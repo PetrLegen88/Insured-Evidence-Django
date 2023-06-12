@@ -15,7 +15,7 @@ class Insured(models.Model):
     phone = models.CharField(max_length=16)
 
     def __str__(self):
-        return self.user.username
+        return self.user.first_name + self.user.last_name
 
 
 class Insurance(models.Model):
@@ -33,7 +33,7 @@ class Insurance(models.Model):
     valid_until = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.insurance} {self.amount} {self.subject} {self.valid_from} {self.valid_until}'
+        return f'{self.insurance} {self.subject}'
 
 
 class InsuranceEvent(models.Model):
