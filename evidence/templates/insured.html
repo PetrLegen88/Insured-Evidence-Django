@@ -3,34 +3,26 @@
 {% block title %}Insured{% endblock %}
 
 {% block content %}
-<h1 class="insured-h">Insureds</h1>
+    <h1 class="insured-h">Insureds</h1>
     <div class="center">
         <a href="#" class="button-insured">New Insured</a>
     </div>
- <table class="insured-table">
+    <table class="insured-table">
         <thead>
             <tr>
-                <th>Jméno</th>
-                <th>Bydliště</th>
+                <th>Name</th>
+                <th>City</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>Prague</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>London</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Michael Johnson</td>
-                <td>New York</td>
-                <td></td>
-            </tr>
+            {% for insured in insureds %}
+                <tr>
+                    <td>{{ insured.user.first_name }} {{ insured.user.last_name }}</td>
+                    <td>{{ insured.city }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Insured, Insurance, InsuranceEvent
 
 
 def homepage(request):
@@ -6,4 +7,5 @@ def homepage(request):
 
 
 def insured(request):
-    return render(request, 'insured.html')
+    insureds = Insured.objects.all()
+    return render(request, 'insured.html', {'insureds': insureds})
