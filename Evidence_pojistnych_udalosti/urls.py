@@ -19,10 +19,11 @@ from django.urls import path
 from evidence import views
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.views import sign_up
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
     path('insured/', views.insured, name='insured'),
-
+    path('signup/', sign_up, name='sign_up'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

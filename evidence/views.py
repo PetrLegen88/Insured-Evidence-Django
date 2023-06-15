@@ -3,6 +3,7 @@ from .models import Insured, Insurance, InsuranceEvent
 
 
 
+
 def homepage(request):
     return render(request, 'homepage.html')
 
@@ -10,6 +11,8 @@ def homepage(request):
 def insured(request):
     insureds = Insured.objects.all()
     return render(request, 'insured.html', {'insureds': insureds})
+
+
 
 
 
