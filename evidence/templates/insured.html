@@ -19,7 +19,7 @@
             {% for insured in insureds %}
                 <tr>
                     <td>{{ insured.first_name }} {{ insured.last_name }}</td>
-                    <td>{{ insured.city }}</td>
+                    <td>{{ insured.street }}, {{ insured.city }}</td>
                     <td></td>
                 </tr>
             {% endfor %}
