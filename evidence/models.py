@@ -1,21 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Insured(models.Model):
-    ROLE_CHOICES = (
-        ('insurer', 'Insurer'),
-        ('insured', 'Insured'),
-    )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
     zipcode = models.IntegerField()
     phone = models.CharField(max_length=16)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.first_name + " " + self.last_name
 
 
 class Insurance(models.Model):
@@ -44,6 +40,7 @@ class InsuranceEvent(models.Model):
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
     )
+    insured = models.ForeignKey(Insured, on_delete=models.CASCADE, null=True)
     insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField()
@@ -51,4 +48,4 @@ class InsuranceEvent(models.Model):
     note = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f'Insurance event: {self.description}'
+        return f'{self.insured.first_name} {self.insured.last_name} - {self.description}'
