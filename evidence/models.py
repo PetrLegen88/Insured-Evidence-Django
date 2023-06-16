@@ -2,9 +2,14 @@ from django.db import models
 
 
 class Insured(models.Model):
+    ROLE_CHOICES = (
+         ('insurer', 'Insurer'),
+         ('insured', 'Insured'),
+    )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=True)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
     zipcode = models.IntegerField()
