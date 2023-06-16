@@ -3,6 +3,22 @@
 {% block title %}Insured{% endblock %}
 
 {% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function() {
+            var messages = document.getElementsByClassName('messages')[0];
+            messages.style.opacity = '0';
+            setTimeout(function() {
+                messages.parentNode.removeChild(messages);
+            }, 500);
+        }, 5000);
+    </script>
+    {% endif %}
     <h1 class="insured-h">Insureds</h1>
     <div class="center">
         <a href="{% url 'new_insured' %}" class="button-insured">New Insured</a>
