@@ -26,7 +26,7 @@ class Insurance(models.Model):
         ('property', 'Property insurance'),
 
     )
-    insurance = models.ForeignKey(Insured, on_delete=models.CASCADE)
+    insurance = models.ForeignKey(Insured, related_name='insurance', on_delete=models.CASCADE)
     type = models.CharField(max_length=32, choices=INSURANCE_TYPE)
     subject = models.CharField(max_length=32)
     amount = models.IntegerField()
@@ -46,7 +46,6 @@ class InsuranceEvent(models.Model):
         ('completed', 'Completed'),
     )
     insured = models.ForeignKey(Insured, on_delete=models.CASCADE, null=True)
-    insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField()
     status = models.CharField(max_length=32, choices=STATUS_CHOICES)
