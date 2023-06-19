@@ -34,7 +34,7 @@
         <tbody>
             {% for insured in insureds %}
                 <tr>
-                    <td>{{ insured.first_name }} {{ insured.last_name }}</td>
+                    <td><a href="{% url 'insured_detail' insured.id %}">{{ insured.first_name }} {{ insured.last_name }}</a></td>
                     <td>{{ insured.street }}, {{ insured.city }}</td>
                     <td></td>
                 </tr>
