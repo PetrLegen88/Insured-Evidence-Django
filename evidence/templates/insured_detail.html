@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Insured Detail{% endblock %}
+
+{% block content %}
+    <div class="insured-info">
+        <p><strong>Name:</strong> {{ insured.first_name }} {{ insured.last_name }}</p>
+        <p><strong>Street:</strong> {{ insured.street }}</p>
+        <p><strong>City:</strong> {{ insured.city }}</p>
+        <p><strong>Zip Code:</strong> {{ insured.zipcode }}</p>
+        <p><strong>Email:</strong> {{ insured.email }}</p>
+        <p><strong>Phone:</strong> {{ insured.phone }}</p>
+    </div>
+
+    <div class="insured-policies">
+
+        <table class="policies-table">
+            <thead>
+                <tr>
+                    <th>Insurance</th>
+                    <th>Amount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for policy in insured.insurance.all %}
+                <tr>
+                <td>{{ policy.get_type_display }}</td>
+                <td>{{ policy.amount }} Kč</td>
+                <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
