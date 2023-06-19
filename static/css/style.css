@@ -58,7 +58,7 @@
     border-radius: 4px;
 }
 
-.insured-table {
+.insured-table, .policies-table {
     width: 85%;
     margin-top: 20px;
     margin-left: auto;
@@ -68,13 +68,13 @@
 
 }
 
-.insured-table th, .insured-table td {
+.insured-table th, .insured-table td, .policies-table th, .policies-table td {
     padding: 8px;
     border: 2px solid #ccc;
 
 }
 .insured-table th:nth-child(2),
-.insured-table td:nth-child(2) {
+.insured-table td:nth-child(2){
     width: 40%;
 }
 
@@ -85,8 +85,21 @@
     width: 30%;
 }
 
-.insured-table th {
+.policies-table th:nth-child(2),
+.policies-table td:nth-child(2){
+    width: 40%;
+}
+
+.policies-table th:nth-child(1),
+.policies-table td:nth-child(1),
+.policies-table th:nth-child(3),
+.policies-table td:nth-child(3) {
+    width: 30%;
+}
+
+.insured-table th, .policies-table th {
     text-align: left;
 
 }
+
 
