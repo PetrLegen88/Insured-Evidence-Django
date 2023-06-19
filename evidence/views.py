@@ -1,9 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm
 from .models import Insured
 from django.contrib import messages
-
-
 
 
 def homepage(request):
@@ -11,7 +9,7 @@ def homepage(request):
 
 
 def insured(request):
-    insureds = Insured.objects.all()
+    insureds = Insured.objects.prefetch_related('insurance')
     return render(request, 'insured.html', {'insureds': insureds})
 
 
@@ -27,6 +25,6 @@ def new_insured(request):
     return render(request, 'new_insured.html', {'form': form})
 
 
-
-
-
+def insured_detail(request, insured_id):
+    insured = get_object_or_404(Insured, pk=insured_id)
+    return render(request, 'insured_detail.html', {'insured': insured})
