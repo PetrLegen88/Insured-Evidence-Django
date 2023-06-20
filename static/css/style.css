@@ -114,7 +114,8 @@
 }
 
 .personal-info {
-    margin: 1% 0 0 8%;
+    margin: 3% 0 0 8%;
+    font-size: 20px;
 }
 
 .personal-info p {
@@ -122,7 +123,8 @@
 }
 
 .contact-info {
-    margin: 3% 0 0 10%;
+    margin: 5% 0 0 10%;
+    font-size: 20px;
 
 }
 
@@ -131,7 +133,7 @@
 }
 
 .name {
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
 }
