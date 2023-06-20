@@ -110,24 +110,24 @@
 }
 
 .thumbnail {
-    margin: 8% 0 0 8%;
+    margin: 1% 0 0 8%;
 }
 
 .personal-info {
-    margin: 5% 0 0 8%;
+    margin: 1% 0 0 8%;
 }
 
 .personal-info p {
-    margin: 10% 0;
+    margin: 5% 0;
 }
 
 .contact-info {
-    margin-top: 10%;
-    margin-left: 2%;
+    margin: 3% 0 0 10%;
+
 }
 
 .contact-info p {
-    margin: 5px 0;
+    margin: 5% 0 0 10%;
 }
 
 .name {
