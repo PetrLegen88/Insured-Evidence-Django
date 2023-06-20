@@ -1,16 +1,19 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class Insured(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='insured', null=True)
     ROLE_CHOICES = (
          ('insurer', 'Insurer'),
          ('insured', 'Insured'),
     )
+
     first_name = models.CharField(max_length=100)
     profile_photo = models.ImageField(upload_to='profile_photos', blank=True, null=True)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=True)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=False)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
     zipcode = models.IntegerField()
@@ -31,8 +34,8 @@ class Insurance(models.Model):
     type = models.CharField(max_length=32, choices=INSURANCE_TYPE)
     subject = models.CharField(max_length=32)
     amount = models.IntegerField()
-    valid_from = models.DateTimeField()
-    valid_until = models.DateTimeField()
+    valid_from = models.DateField()
+    valid_until = models.DateField()
 
     def __str__(self):
         return f'{self.insurance} : {self.subject}'
