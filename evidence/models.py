@@ -7,6 +7,7 @@ class Insured(models.Model):
          ('insured', 'Insured'),
     )
     first_name = models.CharField(max_length=100)
+    profile_photo = models.ImageField(upload_to='profile_photos', blank=True, null=True)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=True)

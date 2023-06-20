@@ -1,7 +1,7 @@
 .navbar {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 18px;
     display: flex;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
@@ -22,7 +22,7 @@
 
 .navbar a {
     color: #fff;
-    text-decoration: none;
+    text-decoration: non
     margin-right: 10px;
     padding: 5px;
 }
@@ -100,6 +100,40 @@
 .insured-table th, .policies-table th {
     text-align: left;
 
+}
+
+.insured-info {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.thumbnail {
+    margin: 8% 0 0 8%;
+}
+
+.personal-info {
+    margin: 5% 0 0 8%;
+}
+
+.personal-info p {
+    margin: 10% 0;
+}
+
+.contact-info {
+    margin-top: 10%;
+    margin-left: 2%;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 

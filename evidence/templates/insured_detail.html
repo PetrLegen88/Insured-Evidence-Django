@@ -1,19 +1,32 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Insured Detail{% endblock %}
 
 {% block content %}
     <div class="insured-info">
-        <p><strong>Name:</strong> {{ insured.first_name }} {{ insured.last_name }}</p>
-        <p><strong>Street:</strong> {{ insured.street }}</p>
-        <p><strong>City:</strong> {{ insured.city }}</p>
-        <p><strong>Zip Code:</strong> {{ insured.zipcode }}</p>
-        <p><strong>Email:</strong> {{ insured.email }}</p>
-        <p><strong>Phone:</strong> {{ insured.phone }}</p>
+        <div class="thumbnail">
+            {% if insured.profile_photo %}
+                <img src="{{ insured.profile_photo.url }}" alt="Thumbnail">
+            {% else %}
+                <img src="{% static 'evidence/default_thumbnail.jpg' %}" alt="Default Thumbnail">
+            {% endif %}
+        </div>
+        <div class="personal-info">
+            <p class="name">{{ insured.first_name }} {{ insured.last_name }}</p>
+            <p>{{ insured.street }}</p>
+            <p>{{ insured.city }}</p>
+            <p>{{ insured.zipcode }}</p>
+        </div>
+        <div class="contact-info">
+            <p>{{ insured.email }}</p>
+            <p>{{ insured.phone }}</p>
+        </div>
     </div>
 
     <div class="insured-policies">
-
+        <h2 class="insured-h">Contracted insurance</h2>
         <table class="policies-table">
             <thead>
                 <tr>
@@ -25,9 +38,9 @@
             <tbody>
             {% for policy in insured.insurance.all %}
                 <tr>
-                <td>{{ policy.get_type_display }}</td>
-                <td>{{ policy.amount }} Kč</td>
-                <td></td>
+                    <td>{{ policy.get_type_display }}</td>
+                    <td>{{ policy.amount }} Kč</td>
+                    <td></td>
                 </tr>
             {% endfor %}
             </tbody>
