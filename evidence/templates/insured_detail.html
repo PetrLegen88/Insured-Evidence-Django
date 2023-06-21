@@ -46,5 +46,5 @@
             </tbody>
         </table>
     </div>
-    <a href="{% url 'add_insurance' %}" class="add-insurance-button">Add Insurance</a>
+    <a href="{% url 'add_insurance' insured_id=insured.id %}">Add Insurance</a>
 {% endblock %}

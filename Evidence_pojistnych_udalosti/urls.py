@@ -29,5 +29,5 @@ urlpatterns = [
     path('signup/', sign_up, name='sign_up'),
     path('new_insured/', new_insured, name='new_insured'),
     path('insured/<int:insured_id>/', views.insured_detail, name='insured_detail'),
-    path('add_insurance/', views.add_insurance, name='add_insurance'),
+    path('add_insurance/<int:insured_id>/', views.add_insurance, name='add_insurance')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

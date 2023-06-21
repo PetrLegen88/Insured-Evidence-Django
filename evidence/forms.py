@@ -12,3 +12,6 @@ class InsuranceForm(forms.ModelForm):
     class Meta:
         model = Insurance
         fields = ['type', 'subject', 'amount', 'valid_from', 'valid_until']
+
+
+

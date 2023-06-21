@@ -1,7 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm, InsuranceForm
 from .models import Insured
 from django.contrib import messages
+from django.urls import reverse
 
 
 def homepage(request):
@@ -27,17 +29,19 @@ def new_insured(request):
 
 def insured_detail(request, insured_id):
     insured = get_object_or_404(Insured, pk=insured_id)
-    return render(request, 'insured_detail.html', {'insured': insured})
+    return render(request, 'insured_detail.html', {'insured': insured, 'insured_id': insured_id})
 
 
-def add_insurance(request):
+@login_required
+def add_insurance(request, insured_id):
+    insured = get_object_or_404(Insured, pk=insured_id)
     if request.method == 'POST':
         form = InsuranceForm(request.POST)
         if form.is_valid():
             insurance = form.save(commit=False)
-            insurance.insurance_id = request.user.insured.id
             insurance.save()
-            return redirect('insured_detail', insured_id=insurance.insurance_id)
+            insured.insurance.add(insurance)
+            return redirect(reverse('insured_detail', args=[insured.id]))
     else:
         form = InsuranceForm()
     return render(request, 'add_insurance.html', {'form': form})

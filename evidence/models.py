@@ -5,8 +5,8 @@ from django.db import models
 class Insured(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='insured', null=True)
     ROLE_CHOICES = (
-         ('insurer', 'Insurer'),
-         ('insured', 'Insured'),
+        ('insurer', 'Insurer'),
+        ('insured', 'Insured'),
     )
 
     first_name = models.CharField(max_length=100)
@@ -30,7 +30,7 @@ class Insurance(models.Model):
         ('property', 'Property insurance'),
 
     )
-    insurance = models.ForeignKey(Insured, related_name='insurance', on_delete=models.CASCADE)
+    insurance = models.ManyToManyField(Insured, related_name='insurance')
     type = models.CharField(max_length=32, choices=INSURANCE_TYPE)
     subject = models.CharField(max_length=32)
     amount = models.IntegerField()
@@ -38,7 +38,9 @@ class Insurance(models.Model):
     valid_until = models.DateField()
 
     def __str__(self):
-        return f'({self.insurance.id}) {self.insurance} : {self.subject}'
+        insured_names = [f"{insured.first_name} {insured.last_name}" for insured in self.insurance.all()]
+        insured_list = ", ".join(insured_names)
+        return f"{insured_list}: {self.subject}"
 
 
 class InsuranceEvent(models.Model):
