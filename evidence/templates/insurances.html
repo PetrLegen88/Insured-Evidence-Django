@@ -12,18 +12,16 @@
         <th>Subject</th>
         <th>Amount</th>
         <th>Valid Until</th>
-
       </tr>
     </thead>
     <tbody>
       {% for insurance in insurances %}
         <tr>
           <td>{{ insurance.get_type_display }}</td>
-          <td>{{ insurance.insured_names }}</td>
+          <td><a href="{% url 'insured_detail' insured_id=insurance.insurance.first.id %}">{{ insurance.insured_names }}</a></td>
           <td>{{ insurance.subject }}</td>
           <td>{{ insurance.amount }} Kč</td>
           <td>{{ insurance.valid_until }}</td>
-
         </tr>
       {% endfor %}
     </tbody>
