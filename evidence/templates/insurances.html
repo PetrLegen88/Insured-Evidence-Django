@@ -7,7 +7,7 @@
   <table class="insurances-table">
     <thead>
       <tr>
-        <th>Type</th>
+        <th>Insurance</th>
         <th>Insured Name</th>
         <th>Subject</th>
         <th>Amount</th>
@@ -17,7 +17,7 @@
     <tbody>
       {% for insurance in insurances %}
         <tr>
-          <td>{{ insurance.get_type_display }}</td>
+          <td><a href="{% url 'insurance_detail' insurance_id=insurance.id %}">{{ insurance.get_type_display }}</a></td>
           <td><a href="{% url 'insured_detail' insured_id=insurance.insurance.first.id %}">{{ insurance.insured_names }}</a></td>
           <td>{{ insurance.subject }}</td>
           <td>{{ insurance.amount }} Kč</td>

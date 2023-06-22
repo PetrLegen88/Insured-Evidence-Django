@@ -53,3 +53,10 @@ def insurances(request):
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
         insurance.insured_names = ", ".join(insured_names)
     return render(request, 'insurances.html', {'insurances': insurances})
+
+
+def insurance_detail(request, insurance_id):
+    insurance = Insurance.objects.get(id=insurance_id)
+    insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
+    insurance.insured_names = ", ".join(insured_names)
+    return render(request, 'insurance_detail.html', {'insurance': insurance})

@@ -38,7 +38,7 @@
             <tbody>
             {% for policy in insured.insurance.all %}
                 <tr>
-                    <td>{{ policy.get_type_display }}</td>
+                    <td><a href="{% url 'insurance_detail' insurance_id=policy.id %}">{{ policy.get_type_display }}</a></td>
                     <td>{{ policy.amount }} Kč</td>
                     <td></td>
                 </tr>
