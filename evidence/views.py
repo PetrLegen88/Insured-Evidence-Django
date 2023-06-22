@@ -44,4 +44,4 @@ def add_insurance(request, insured_id):
             return redirect(reverse('insured_detail', args=[insured.id]))
     else:
         form = InsuranceForm()
-    return render(request, 'add_insurance.html', {'form': form})
+    return render(request, 'add_insurance.html', {'form': form, 'insured': insured})

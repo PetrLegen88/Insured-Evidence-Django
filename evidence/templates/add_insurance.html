@@ -3,7 +3,7 @@
 {% block title %}Add Insurance{% endblock %}
 
 {% block content %}
-    <h2>Add Insurance</h2>
+    <h2>Add Insurance to {{ insured.first_name }} {{ insured.last_name }}</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
