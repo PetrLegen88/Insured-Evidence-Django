@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm, InsuranceForm
-from .models import Insured
+from .models import Insured, Insurance
 from django.contrib import messages
 from django.urls import reverse
 
@@ -45,3 +45,11 @@ def add_insurance(request, insured_id):
     else:
         form = InsuranceForm()
     return render(request, 'add_insurance.html', {'form': form, 'insured': insured})
+
+
+def insurances(request):
+    insurances = Insurance.objects.all()
+    for insurance in insurances:
+        insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
+        insurance.insured_names = ", ".join(insured_names)
+    return render(request, 'insurances.html', {'insurances': insurances})

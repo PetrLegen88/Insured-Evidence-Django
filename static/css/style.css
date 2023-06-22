@@ -36,7 +36,7 @@
     text-decoration: none;
     margin-right: 20px;
 }
-.insured-h {
+.insured-h, .insurances-h {
     margin-top: 5%;
     margin-left: 8%;
 }
@@ -58,7 +58,7 @@
     border-radius: 4px;
 }
 
-.insured-table, .policies-table {
+.insured-table, .policies-table, .insurances-table {
     width: 85%;
     margin-top: 20px;
     margin-left: auto;
@@ -68,7 +68,9 @@
 
 }
 
-.insured-table th, .insured-table td, .policies-table th, .policies-table td {
+.insured-table th, .insured-table td,
+.policies-table th, .policies-table td,
+.insurances-table th, .insurances-table td {
     padding: 8px;
     border: 2px solid #ccc;
 

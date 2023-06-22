@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Insurances{% endblock %}
+
+{% block content %}
+  <h2 class="insurances-h">Insurances</h2>
+  <table class="insurances-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Insured Name</th>
+        <th>Subject</th>
+        <th>Amount</th>
+        <th>Valid Until</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for insurance in insurances %}
+        <tr>
+          <td>{{ insurance.get_type_display }}</td>
+          <td>{{ insurance.insured_names }}</td>
+          <td>{{ insurance.subject }}</td>
+          <td>{{ insurance.amount }} Kč</td>
+          <td>{{ insurance.valid_until }}</td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
