@@ -19,7 +19,7 @@ def new_insured(request):
     if request.method == 'POST':
         form = InsuredForm(request.POST)
         if form.is_valid():
-            messages.success(request, 'Pojištěnec byl uložen.')
+            messages.success(request, 'The insured has been saved.')
             form.save()
             return redirect('insured')
     else:
@@ -64,14 +64,13 @@ def insurance_detail(request, insurance_id):
 
 def delete_insured(request, insured_id):
     insured = get_object_or_404(Insured, pk=insured_id)
+
+    policies = Insurance.objects.filter(insurance=insured)
+    policies.delete()
+
     insured.delete()
-    messages.success(request, 'Pojištěnec byl smazán.')
+    messages.success(request, 'The insured has been deleted.')
     return redirect('insured')
-
-
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import InsuredForm
-from .models import Insured
 
 
 def edit_insured(request, insured_id):
