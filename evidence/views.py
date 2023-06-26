@@ -60,3 +60,10 @@ def insurance_detail(request, insurance_id):
     insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
     insurance.insured_names = ", ".join(insured_names)
     return render(request, 'insurance_detail.html', {'insurance': insurance})
+
+
+def delete_insured(request, insured_id):
+    insured = get_object_or_404(Insured, pk=insured_id)
+    insured.delete()
+    messages.success(request, 'Pojištěnec byl smazán.')
+    return redirect('insured')
