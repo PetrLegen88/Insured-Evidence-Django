@@ -67,3 +67,22 @@ def delete_insured(request, insured_id):
     insured.delete()
     messages.success(request, 'Pojištěnec byl smazán.')
     return redirect('insured')
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import InsuredForm
+from .models import Insured
+
+
+def edit_insured(request, insured_id):
+    insured = get_object_or_404(Insured, id=insured_id)
+
+    if request.method == 'POST':
+        form = InsuredForm(request.POST, instance=insured)
+        if form.is_valid():
+            form.save()
+            return redirect('insured')
+    else:
+        form = InsuredForm(instance=insured)
+
+    return render(request, 'edit_insured.html', {'form': form})
