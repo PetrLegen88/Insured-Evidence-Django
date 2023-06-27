@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm, InsuranceForm
-from .models import Insured, Insurance
+from .models import Insured, Insurance, InsuranceEvent
 from django.contrib import messages
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -118,3 +118,8 @@ def edit_insurance(request, insurance_id):
     }
 
     return render(request, 'edit_insurance.html', context)
+
+
+def insured_events(request):
+    events = InsuranceEvent.objects.all()
+    return render(request, 'insured_events.html', {'events': events})

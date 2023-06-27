@@ -1,2 +1,28 @@
+{% extends 'base.html' %}
 
+{% block title %}Insured Events{% endblock %}
+
+{% block content %}
+  <h2 class="insured-events-h">Insured Events</h2>
+  <table class="insured-events-table">
+    <thead>
+      <tr>
+        <th>Insurance</th>
+        <th>Subject</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        <tr>
+          <td>{{ event.insurance.get_type_display }} - {{ event.insurance.subject }}</td>
+          <td>{{ event.subject }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.get_status_display }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
 
