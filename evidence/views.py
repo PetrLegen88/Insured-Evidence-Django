@@ -92,3 +92,22 @@ def delete_insurance(request, insurance_id):
     insured_id = insurance.insurance.first().id
     insurance.delete()
     return redirect('insured_detail', insured_id=insured_id)
+
+
+def edit_insurance(request, insurance_id):
+    insurance = get_object_or_404(Insurance, id=insurance_id)
+
+    if request.method == 'POST':
+        form = InsuranceForm(request.POST, instance=insurance)
+        if form.is_valid():
+            form.save()
+            return redirect('insured_detail', insured_id=insurance.insurance.first().id)
+    else:
+        form = InsuranceForm(instance=insurance)
+
+    context = {
+        'form': form,
+        'insurance': insurance,
+    }
+
+    return render(request, 'edit_insurance.html', context)

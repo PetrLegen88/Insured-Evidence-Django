@@ -35,4 +35,5 @@ urlpatterns = [
     path('delete_insured/<int:insured_id>/', views.delete_insured, name='delete_insured'),
     path('insureds/edit/<int:insured_id>/', views.edit_insured, name='edit_insured'),
     path('delete_insurance/<int:insurance_id>/', views.delete_insurance, name='delete_insurance'),
+    path('edit_insurance/<int:insurance_id>/', views.edit_insurance, name='edit_insurance'),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
