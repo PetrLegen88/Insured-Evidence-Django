@@ -16,6 +16,13 @@
             <a href="/insurances/">Insurance</a>
             <a href="/events/">Insured Events</a>
             <a href="/about/">About App</a>
+             {% if user.is_authenticated %}
+            <span>{{ user.username }}</span>
+            <a href="/logout/">Logout</a>
+            {% else %}
+            <a href="/login/">Login</a>
+            <a href="/signup/">Sign Up</a>
+            {% endif %}
         </div>
     </div>
 

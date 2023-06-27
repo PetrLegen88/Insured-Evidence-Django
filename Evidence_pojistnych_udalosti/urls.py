@@ -19,14 +19,16 @@ from django.urls import path
 from evidence import views
 from django.conf import settings
 from django.conf.urls.static import static
-from accounts.views import sign_up
+from accounts.views import sign_up, user_login, user_logout
 from evidence.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
     path('insured/', views.insured, name='insured'),
-    path('signup/', sign_up, name='sign_up'),
+    path('sign_up/', sign_up, name='sign_up'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
     path('new_insured/', new_insured, name='new_insured'),
     path('insured/<int:insured_id>/', views.insured_detail, name='insured_detail'),
     path('add_insurance/<int:insured_id>/', views.add_insurance, name='add_insurance'),
