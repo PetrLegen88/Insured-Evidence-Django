@@ -19,6 +19,9 @@ class Insured(models.Model):
     zipcode = models.IntegerField()
     phone = models.CharField(max_length=16)
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return f"({self.id}) {self.first_name} {self.last_name}"
 
@@ -36,6 +39,9 @@ class Insurance(models.Model):
     amount = models.IntegerField()
     valid_from = models.DateField()
     valid_until = models.DateField()
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in self.insurance.all()]
