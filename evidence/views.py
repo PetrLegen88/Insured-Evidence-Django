@@ -4,6 +4,7 @@ from .forms import InsuredForm, InsuranceForm
 from .models import Insured, Insurance
 from django.contrib import messages
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 
 def homepage(request):
@@ -11,8 +12,11 @@ def homepage(request):
 
 
 def insured(request):
-    insureds = Insured.objects.prefetch_related('insurance')
-    return render(request, 'insured.html', {'insureds': insureds})
+    insured_list = Insured.objects.prefetch_related('insurance')
+    paginator = Paginator(insured_list, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'insured.html', {'page_obj': page_obj})
 
 
 def new_insured(request):
@@ -48,11 +52,14 @@ def add_insurance(request, insured_id):
 
 
 def insurances(request):
-    insurances = Insurance.objects.all()
-    for insurance in insurances:
+    insurance_objects = Insurance.objects.all()
+    for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
         insurance.insured_names = ", ".join(insured_names)
-    return render(request, 'insurances.html', {'insurances': insurances})
+    paginator = Paginator(insurance_objects, 3)
+    page_number = request.GET.get('page')
+    insurances = paginator.get_page(page_number)
+    return render(request, 'insurances.html', {'insurances': insurances, 'page_obj': insurances})
 
 
 def insurance_detail(request, insurance_id):
