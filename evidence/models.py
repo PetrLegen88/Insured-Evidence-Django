@@ -57,11 +57,12 @@ class InsuranceEvent(models.Model):
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
     )
-    insured = models.ForeignKey(Insured, on_delete=models.CASCADE, null=True)
+    insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE, null=True)
+    subject = models.CharField(max_length=32, null=True)
     description = models.TextField()
     date = models.DateField()
     status = models.CharField(max_length=32, choices=STATUS_CHOICES)
     note = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f'{self.insured.first_name} {self.insured.last_name} - {self.description}'
+        return f'{self.insurance} - {self.subject}'
