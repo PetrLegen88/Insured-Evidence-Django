@@ -40,7 +40,12 @@
                 <tr>
                     <td><a href="{% url 'insurance_detail' insurance_id=policy.id %}">{{ policy.get_type_display }}</a></td>
                     <td>{{ policy.amount }} Kč</td>
-                    <td></td>
+                  <td>
+                        <form method="post" action="{% url 'delete_insurance' insurance_id=policy.id %}">
+                        {% csrf_token %}
+                            <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this insurance?')">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

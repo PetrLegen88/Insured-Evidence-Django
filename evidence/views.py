@@ -85,3 +85,10 @@ def edit_insured(request, insured_id):
         form = InsuredForm(instance=insured)
 
     return render(request, 'edit_insured.html', {'form': form})
+
+
+def delete_insurance(request, insurance_id):
+    insurance = Insurance.objects.get(pk=insurance_id)
+    insured_id = insurance.insurance.first().id
+    insurance.delete()
+    return redirect('insured_detail', insured_id=insured_id)
