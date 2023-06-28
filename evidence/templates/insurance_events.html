@@ -44,6 +44,7 @@
               {% csrf_token %}
                 <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
             </form>
+            <a href="{% url 'edit_event' event_id=event.id %}" class="edit-button">Edit</a>
           </td>
         </tr>
       {% endfor %}

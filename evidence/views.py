@@ -164,3 +164,19 @@ def create_event(request):
         'form': form
     }
     return render(request, 'create_event.html', context)
+
+
+def edit_event(request, event_id):
+    event = get_object_or_404(InsuranceEvent, id=event_id)
+    if request.method == 'POST':
+        form = InsuranceEventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('insurance_event_detail', event_id=event_id)
+    else:
+        form = InsuranceEventForm(instance=event)
+    context = {
+        'form': form,
+        'event': event
+    }
+    return render(request, 'edit_event.html', context)
