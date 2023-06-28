@@ -120,12 +120,12 @@ def edit_insurance(request, insurance_id):
     return render(request, 'edit_insurance.html', context)
 
 
-def insured_events(request):
+def insurance_events(request):
     events = InsuranceEvent.objects.all()
     for event in events:
         insured_names = ", ".join([insured.first_name for insured in event.insurance.insurance.all()])
         setattr(event, 'insured_names', insured_names)
-    return render(request, 'insured_events.html', {'events': events})
+    return render(request, 'insurance_events.html', {'events': events})
 
 
 def insurance_event_detail(request, event_id):
@@ -138,3 +138,14 @@ def insurance_event_detail(request, event_id):
     return render(request, 'insurance_event_detail.html', context)
 
 
+def delete_event(request, event_id):
+    event = InsuranceEvent.objects.get(id=event_id)
+
+    if request.method == 'POST':
+        event.delete()
+        return redirect('insurance_events')
+
+    context = {
+        'event': event
+    }
+    return render(request, 'delete_event.html', context)

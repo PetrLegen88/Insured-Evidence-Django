@@ -7,16 +7,23 @@
   <table class="insured-events-table">
     <thead>
       <tr>
+        <th>Event</th>
         <th>Insurance</th>
         <th>Insured</th>
         <th>Subject</th>
         <th>Date</th>
         <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       {% for event in events %}
         <tr>
+          <td>
+            <a href="{% url 'insurance_event_detail' event_id=event.id %}">
+              Event - #{{ event.id }}
+            </a>
+          </td>
           <td>
           <a href="{% url 'insurance_detail' event.insurance.id %}">
             {{ event.insurance.get_type_display }} - {{ event.insurance.subject }}
@@ -32,6 +39,12 @@
           <td>{{ event.subject }}</td>
           <td>{{ event.date }}</td>
           <td>{{ event.status }}</td>
+          <td>
+            <form method="post" action="{% url 'delete_event' event_id=event.id %}">
+              {% csrf_token %}
+                <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+            </form>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
