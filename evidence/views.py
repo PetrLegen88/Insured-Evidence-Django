@@ -128,3 +128,13 @@ def insured_events(request):
     return render(request, 'insured_events.html', {'events': events})
 
 
+def insurance_event_detail(request, event_id):
+    event = InsuranceEvent.objects.get(id=event_id)
+    insured_names = ", ".join([insured.first_name for insured in event.insurance.insurance.all()])
+    context = {
+        'event': event,
+        'insured_names': insured_names
+    }
+    return render(request, 'insurance_event_detail.html', context)
+
+

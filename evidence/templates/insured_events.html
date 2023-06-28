@@ -17,11 +17,17 @@
     <tbody>
       {% for event in events %}
         <tr>
-          <td>{{ event.insurance.get_type_display }} - {{ event.insurance.subject }}</td>
           <td>
-            {% for insured in event.insurance.insurance.all %}
-              {{ insured.first_name }} {{ insured.last_name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
+          <a href="{% url 'insurance_detail' event.insurance.id %}">
+            {{ event.insurance.get_type_display }} - {{ event.insurance.subject }}
+          </a>
+          </td>
+          <td>
+              {% for insured in event.insurance.insurance.all %}
+            <a href="{% url 'insured_detail' insured.id %}">
+              {{ insured.first_name }} {{ insured.last_name }}
+            </a>{% if not forloop.last %}, {% endif %}
+              {% endfor %}
           </td>
           <td>{{ event.subject }}</td>
           <td>{{ event.date }}</td>

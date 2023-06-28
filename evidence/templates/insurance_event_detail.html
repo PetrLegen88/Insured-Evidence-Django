@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Insurance Event Detail{% endblock %}
+
+{% block content %}
+  <h2 class="insurance-event-detail-h">Insurance Event Detail</h2>
+  <div class="insurance-event-detail">
+
+    <p><strong>Insurance:</strong> {{ event.insurance.get_type_display }} - {{ event.insurance.subject }}</p>
+    <p><strong>Insureds Names:</strong> {% for insured in event.insurance.insurance.all %}
+        {{ insured.first_name }} {{ insured.last_name }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}</p>
+    <p><strong>Subject:</strong> {{ event.subject }}</p>
+    <p><strong>Description:</strong> {{ event.description }}</p>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Status:</strong> {{ event.get_status_display }}</p>
+    <p><strong>Note:</strong> {{ event.note }}</p>
+  </div>
+{% endblock %}
