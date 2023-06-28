@@ -1,5 +1,5 @@
 from django import forms
-from .models import Insured, Insurance
+from .models import Insured, Insurance, InsuranceEvent
 
 
 class InsuredForm(forms.ModelForm):
@@ -14,4 +14,7 @@ class InsuranceForm(forms.ModelForm):
         fields = ['type', 'subject', 'amount', 'valid_from', 'valid_until']
 
 
-
+class InsuranceEventForm(forms.ModelForm):
+    class Meta:
+        model = InsuranceEvent
+        fields = ['insurance', 'subject', 'description', 'date', 'status', 'note']

@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import InsuredForm, InsuranceForm
+from .forms import InsuredForm, InsuranceForm, InsuranceEventForm
 from .models import Insured, Insurance, InsuranceEvent
 from django.contrib import messages
 from django.urls import reverse
@@ -149,3 +149,18 @@ def delete_event(request, event_id):
         'event': event
     }
     return render(request, 'delete_event.html', context)
+
+
+def create_event(request):
+    if request.method == 'POST':
+        form = InsuranceEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('insurance_events')
+    else:
+        form = InsuranceEventForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'create_event.html', context)
