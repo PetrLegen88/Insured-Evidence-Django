@@ -122,4 +122,9 @@ def edit_insurance(request, insurance_id):
 
 def insured_events(request):
     events = InsuranceEvent.objects.all()
+    for event in events:
+        insured_names = ", ".join([insured.first_name for insured in event.insurance.insurance.all()])
+        setattr(event, 'insured_names', insured_names)
     return render(request, 'insured_events.html', {'events': events})
+
+

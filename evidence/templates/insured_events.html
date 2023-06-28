@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>Insurance</th>
+        <th>Insured</th>
         <th>Subject</th>
         <th>Date</th>
         <th>Status</th>
@@ -17,12 +18,16 @@
       {% for event in events %}
         <tr>
           <td>{{ event.insurance.get_type_display }} - {{ event.insurance.subject }}</td>
+          <td>
+            {% for insured in event.insurance.insurance.all %}
+              {{ insured.first_name }} {{ insured.last_name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
           <td>{{ event.subject }}</td>
           <td>{{ event.date }}</td>
-          <td>{{ event.get_status_display }}</td>
+          <td>{{ event.status }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 {% endblock %}
-
