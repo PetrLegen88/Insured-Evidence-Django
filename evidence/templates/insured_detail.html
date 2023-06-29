@@ -49,7 +49,9 @@
             </tbody>
         </table>
     </div>
-    <a href="{% url 'add_insurance' insured_id=insured.id %}" class="button button-add">Add Insurance</a>
-    <a href="{% url 'edit_insured' insured.id %}" class="button button-edit">Edit Insured</a>
-    <a href="{% url 'delete_insured' insured.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this insured?')">Delete</a>
+    <div class="main-buttons">
+        <a href="{% url 'add_insurance' insured_id=insured.id %}" class="button button-add">Add Insurance</a>
+        <a href="{% url 'edit_insured' insured.id %}" class="button button-edit">Edit Insured</a>
+        <a href="{% url 'delete_insured' insured.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this insured?')">Delete</a>
+    </div>
 {% endblock %}
