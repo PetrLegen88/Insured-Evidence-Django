@@ -21,7 +21,7 @@
     {% endif %}
     <h1 class="insured-h">Insureds</h1>
     <div class="center">
-        <a href="{% url 'new_insured' %}" class="button-add">New Insured</a>
+        <a href="{% url 'new_insured' %}" class="button button-add">New Insured</a>
     </div>
     <table class="insured-table">
         <thead>
@@ -37,11 +37,8 @@
                     <td><a href="{% url 'insured_detail' insured.id %}">{{ insured.first_name }} {{ insured.last_name }}</a></td>
                     <td>{{ insured.street }}, {{ insured.city }}</td>
                     <td>
-                        <form method="post" action="{% url 'delete_insured' insured.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this insured?')">Delete</button>
-                        </form>
-                        <a href="{% url 'edit_insured' insured.id %}" class="edit-button">Edit</a>
+                        <a href="{% url 'delete_insured' insured.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this insured?')">Delete</a>
+                        <a href="{% url 'edit_insured' insured.id %}" class="button button-edit">Edit</a>
                     </td>
                 </tr>
             {% endfor %}
