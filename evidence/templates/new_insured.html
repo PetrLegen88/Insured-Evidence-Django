@@ -3,10 +3,43 @@
 {% block title %}New Insured{% endblock %}
 
 {% block content %}
-    <h1 class="new-insured-h">New Insured</h1>
-    <form method="POST">
+    <h2 class="new-insured-h">New Insured</h2>
+    <form method="POST" class="insured-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit">
+        <div class="form-column">
+            <div class="form-row">
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.street.id_for_label }}">Street</label>
+                {{ form.street }}
+            </div>
+        </div>
+        <div class="form-column">
+            <div class="form-row">
+                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.city.id_for_label }}">City</label>
+                {{ form.city }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.zipcode.id_for_label }}">Zip Code</label>
+                {{ form.zipcode }}
+            </div>
+            <div class="form-row">
+                <label for="{{ form.phone.id_for_label }}">Phone</label>
+                {{ form.phone }}
+            </div>
+        </div>
+        <div class="form-row">
+            <input type="submit" value="Save" class="submit-button">
+        </div>
     </form>
 {% endblock %}

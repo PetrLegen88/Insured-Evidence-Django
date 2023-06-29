@@ -16,7 +16,7 @@ class Insured(models.Model):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=True)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
-    zipcode = models.IntegerField()
+    zipcode = models.CharField(max_length=16)
     phone = models.CharField(max_length=16)
 
     class Meta:
@@ -36,7 +36,7 @@ class Insurance(models.Model):
     insurance = models.ManyToManyField(Insured, related_name='insurance')
     type = models.CharField(max_length=32, choices=INSURANCE_TYPE)
     subject = models.CharField(max_length=32)
-    amount = models.IntegerField()
+    amount = models.CharField(max_length=32)
     valid_from = models.DateField()
     valid_until = models.DateField()
 
