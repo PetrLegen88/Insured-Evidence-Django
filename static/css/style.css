@@ -1,41 +1,54 @@
 .navbar {
-    background-color: #333;
     color: #fff;
+    background-color: #454545;
     padding: 18px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-family: 'Open Sans', sans-serif;
 }
 
-.navbar-logo {
-    color: #fff;
-    margin-right: auto;
-    margin-left: 10px;
-    font-size: 120%;
-}
 
 .navbar-links {
     display: flex;
-    margin-right: 55%;
-
+    align-items: center;
 }
 
 .navbar a {
-    color: #fff;
-    text-decoration: non
-    margin-right: 10px;
-    padding: 5px;
+    color: #ccc;
+    text-decoration: none;
+    margin-right: 30px;
 }
 
-.navbar a.active {
-    font-weight: bold;
+.navbar-logo {
+    color: #fff !important;
+    font-size: 115% ;
+    margin-right: 10%;
 }
+
 
 .navbar-links a {
-    color: #fff;
+    color: #A9A9A9; /* světle šedá */
     text-decoration: none;
+    margin-right: 30px;
+}
+
+.navbar-links a.active {
+    color: #FFF; /* bílá */
+}
+
+
+.navbar-login {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.navbar-login span {
     margin-right: 20px;
 }
+
+
 .insured-h, .insurances-h, .insured-events-h {
     margin-top: 5%;
     margin-left: 8%;
@@ -48,7 +61,7 @@
 
 }
 
-.button-insured {
+.button-add {
     display: inline-block;
     padding: 10px 20px;
     background-color: #6495ED;
@@ -57,6 +70,27 @@
     font-size: 18px;
     border-radius: 4px;
 }
+
+.button-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffad33;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.button-delete {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e60000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
 
 .insured-table, .policies-table, .insurances-table, .insured-events-table {
     width: 85%;

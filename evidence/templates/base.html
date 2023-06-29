@@ -8,20 +8,23 @@
 <body>
     <div class="navbar">
         <div class="navbar-logo">
-            <a href="/">InsuredApp</a>
+            <a href="/" class="navbar-logo">InsuredApp</a>
         </div>
 
         <div class="navbar-links">
-            <a href="/insured/">Insured</a>
-            <a href="/insurances/">Insurance</a>
-            <a href="/insurance_events/">Events</a>
-            <a href="/about/">About</a>
-             {% if user.is_authenticated %}
-            <span>{{ user.username }}</span>
-            <a href="/logout/">Logout</a>
+            <a href="/insured/" {% if request.path == '/insured/' %}class="active"{% endif %}>Insured</a>
+            <a href="/insurances/" {% if request.path == '/insurances/' %}class="active"{% endif %}>Insurance</a>
+            <a href="/insurance_events/" {% if request.path == '/insurance_events/' %}class="active"{% endif %}>Events</a>
+            <a href="/about/" {% if request.path == '/about/' %}class="active"{% endif %}>About</a>
+        </div>
+
+        <div class="navbar-login">
+            {% if user.is_authenticated %}
+                <span>{{ user.username }}</span>
+                <a href="/logout/">Logout</a>
             {% else %}
-            <a href="/login/">Login</a>
-            <a href="/signup/">Sign_Up</a>
+                <a href="/login/">Login</a>
+                <a href="/signup/">Sign Up</a>
             {% endif %}
         </div>
     </div>
