@@ -108,7 +108,7 @@
 .policies-table th, .policies-table td,
 .insurances-table th, .insurances-table td,
  .insured-events-table th, .insured-events-table td {
-    padding: 8px;
+    padding: 6px;
     border: 1px solid #1a001a;
 
 }

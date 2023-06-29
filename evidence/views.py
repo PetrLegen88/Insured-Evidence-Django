@@ -125,7 +125,13 @@ def insurance_events(request):
     for event in events:
         insured_names = ", ".join([insured.first_name for insured in event.insurance.insurance.all()])
         setattr(event, 'insured_names', insured_names)
-    return render(request, 'insurance_events.html', {'events': events})
+
+    events = InsuranceEvent.objects.order_by('id')
+    paginator = Paginator(events, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'insurance_events.html', {'page_obj': page_obj})
 
 
 def insurance_event_detail(request, event_id):

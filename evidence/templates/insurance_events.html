@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for event in events %}
+      {% for event in page_obj %}
         <tr>
           <td>
             <a href="{% url 'insurance_event_detail' event_id=event.id %}">
@@ -40,15 +40,26 @@
           <td>{{ event.date }}</td>
           <td>{{ event.status }}</td>
           <td>
-            <form method="post" action="{% url 'delete_event' event_id=event.id %}">
-              {% csrf_token %}
-                <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
-            </form>
-            <a href="{% url 'edit_event' event_id=event.id %}" class="edit-button">Edit</a>
+            <a href="{% url 'delete_event' event_id=event.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>
+            <a href="{% url 'edit_event' event_id=event.id %}" class="button button-edit">Edit</a>
           </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
-  <a href="{% url 'create_event' %}" class="create-event-button">Create Event</a>
+  <div class="main-buttons">
+    <a href="{% url 'create_event' %}" class="button button-add">Create Event</a>
+  </div>
+
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span class="current-page">{{ page_obj.number }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+    </div>
 {% endblock %}
