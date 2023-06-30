@@ -248,6 +248,7 @@
     display: flex;
     justify-content: center;
     margin-top: 3%;
+    margin-right: 11%;
 }
 
 .submit-button {
@@ -269,4 +270,93 @@
     padding: 1% 0 0 2%;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+}
+
+
+
+.add-insurance-form {
+  max-width: 40%;
+  padding: 1% 0 0 3%;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4%;
+
+
+}
+
+.form-row-add-insurance-type {
+  grid-column: 1 / span 2;
+
+}
+
+
+.form-row-add-insurance-type label {
+  font-size: 18px;
+
+}
+
+.form-row-add-insurance-type select {
+  width: 100%;
+  padding: 1.5%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0 10px 0;
+  color: #595959;
+
+}
+
+.add-insurance-h {
+  padding: 1% 0 0 3%;
+  font-weight: bold;
+}
+
+.form-row-add-insurance {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-column-add-insurance {
+  width: 100%;
+  padding: 0 1% 2% 0;
+
+}
+
+.form-row-add-insurance label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.form-row-add-insurance input {
+  width: 100%;
+  padding:3%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #595959;
+}
+
+.add-insurance-button {
+  margin-top: 3%;
+  display: grid;
+  grid-column: 1 / span 2;
+  justify-content: center;
+}
+
+
+.add-insurance-button button {
+  padding: 10px 30px;
+  background-color: #6495ED;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-insurance-button button:hover {
+  background-color: #4169E1;
 }
