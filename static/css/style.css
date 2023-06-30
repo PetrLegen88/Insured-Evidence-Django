@@ -91,6 +91,7 @@
 .main-buttons .button {
     margin-right: 10px;
     font-size: 20px;
+    padding: 10px 20px;
 }
 
 
@@ -210,9 +211,10 @@
 
 .insured-form {
     max-width: 75%;
-    margin: 18px;
-    padding: 18px;
+    padding: 1% 0 0 2%;
     border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 .form-column {
@@ -220,11 +222,12 @@
     width: 40%;
     vertical-align: top;
     margin-right: 4%;
+
 }
 
 .form-row {
     margin-bottom: 20px;
-    margin-left: 8%;
+
 }
 
 .form-row label {
@@ -233,19 +236,21 @@
     margin-bottom: 4px;
 }
 
-.form-row input[type="text"],
-.form-row input[type="email"],
-.form-row input[type="tel"] {
+.form-row input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: #999;
+}
+
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
 }
 
 .submit-button {
-    display: block;
-    margin: 0 auto;
-    margin-top: 3%;
     padding: 10px 30px;
     background-color: #6495ED;
     color: #fff;
@@ -261,5 +266,7 @@
 }
 
 .new-insured-h {
-    margin: 3% 0 0 5%;
+    padding: 1% 0 0 2%;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
