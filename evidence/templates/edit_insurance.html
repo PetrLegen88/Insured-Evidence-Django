@@ -1,14 +1,38 @@
 {% extends 'base.html' %}
 
-{% block title %}Edit Insurance{% endblock %}
+{% block title %}Add Insurance{% endblock %}
 
 {% block content %}
-    <h1>Edit Insurance</h1>
-      <form method="post">
+    <h2 class="add-insurance-h">Add Insurance to {{ insured.first_name }} {{ insured.last_name }}</h2>
+    <form method="POST" class="add-insurance-form">
         {% csrf_token %}
-        {{ form.as_p }}
-
-      <button type="submit">Save</button>
-      </form>
+        <div class="form-row-add-insurance-type">
+            <label>Type</label>
+            {{ form.type }}
+        </div>
+        <div class="form-row-add-insurance">
+            <div class="form-column-add-insurance">
+                <label>Amount</label>
+                {{ form.amount }}
+            </div>
+            <div class="form-column-add-insurance">
+                <label>Subject</label>
+                {{ form.subject }}
+            </div>
+        </div>
+        <div class="form-row-add-insurance">
+            <div class="form-column-add-insurance">
+                <label>Valid From</label>
+                {{ form.valid_from }}
+            </div>
+            <div class="form-column-add-insurance">
+                <label>Valid Until</label>
+                {{ form.valid_until }}
+            </div>
+        </div>
+        <div class="add-insurance-button">
+            <button type="submit" class="submit-button">Save</button>
+        </div>
+    </form>
 
 {% endblock %}
