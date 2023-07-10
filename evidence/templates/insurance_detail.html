@@ -3,12 +3,14 @@
 {% block title %}Insurance Detail{% endblock %}
 
 {% block content %}
-    <div class="insurance-info">
+    <div class="insurance-detail">
         <h2 class="insurance-h">Insurance Detail</h2>
-        <p><strong>Type:</strong> {{ insurance.get_type_display }}</p>
-        <p><strong>Insured Name:</strong> {{ insurance.insured_names }}</p>
-        <p><strong>Subject:</strong> {{ insurance.subject }}</p>
-        <p><strong>Amount:</strong> {{ insurance.amount }} Kč</p>
-        <p><strong>Valid Until:</strong> {{ insurance.valid_until }}</p>
+        <div class="insurance-info">
+            <p><strong>Type:</strong> {{ insurance.get_type_display }}</p>
+            <p><strong>Insured Name:</strong> {{ insurance.insured_names }}</p>
+            <p><strong>Subject:</strong> {{ insurance.subject }}</p>
+            <p><strong>Amount:</strong> {{ insurance.amount }} Kč</p>
+            <p><strong>Valid Until:</strong> {{ insurance.valid_until }}</p>
+        </div>
     </div>
 {% endblock %}

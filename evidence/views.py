@@ -91,7 +91,7 @@ def edit_insured(request, insured_id):
     else:
         form = InsuredForm(instance=insured)
 
-    return render(request, 'edit_insured.html', {'form': form})
+    return render(request, 'edit_insured.html', {'form': form, 'insured': insured})
 
 
 def delete_insurance(request, insurance_id):

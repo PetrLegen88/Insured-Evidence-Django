@@ -3,7 +3,7 @@
 {% block title %}New Insured{% endblock %}
 
 {% block content %}
-    <h2 class="new-insured-h">New Insured</h2>
+    <h2 class="new-insured-h">Edit Insured {{ insured.first_name }} {{ insured.last_name }}</h2>
     <form method="POST" class="insured-form">
         {% csrf_token %}
         <div class="form-column">

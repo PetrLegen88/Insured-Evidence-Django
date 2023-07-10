@@ -360,3 +360,31 @@
 .add-insurance-button button:hover {
   background-color: #4169E1;
 }
+
+
+.insurance-detail {
+  max-width: 40%;
+  padding: 1% 0 0 3%;
+  border-radius: 8px;
+}
+
+.insurance-h {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.insurance-info {
+  margin-top: 20px;
+}
+
+.insurance-info p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+
+
+
+
+
+
