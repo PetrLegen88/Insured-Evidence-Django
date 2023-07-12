@@ -18,3 +18,19 @@ class InsuranceEventForm(forms.ModelForm):
     class Meta:
         model = InsuranceEvent
         fields = ['insurance', 'subject', 'description', 'date', 'status', 'note']
+
+
+class NewInsuranceForm(forms.ModelForm):
+    insured = forms.ModelChoiceField(queryset=Insured.objects.all(), label='Insured')
+
+    class Meta:
+        model = Insurance
+        fields = ['insured', 'type', 'subject', 'amount', 'valid_from', 'valid_until']
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.save()
+        instance.insurance.set([self.cleaned_data['insured']])
+        if commit:
+            instance.save()
+        return instance

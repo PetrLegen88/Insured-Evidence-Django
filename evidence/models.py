@@ -46,7 +46,7 @@ class Insurance(models.Model):
     def __str__(self):
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in self.insurance.all()]
         insured_list = ", ".join(insured_names)
-        return f"{insured_list}: {self.subject}"
+        return f"({self.id}) {insured_list}: {self.subject}"
 
 
 class InsuranceEvent(models.Model):

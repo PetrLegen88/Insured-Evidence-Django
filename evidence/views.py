@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import InsuredForm, InsuranceForm, InsuranceEventForm
+from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm
 from .models import Insured, Insurance, InsuranceEvent
 from django.contrib import messages
 from django.urls import reverse
@@ -62,6 +62,23 @@ def insurances(request):
     return render(request, 'insurances.html', {'insurances': insurances, 'page_obj': insurances})
 
 
+@login_required
+def new_insurance(request):
+    if request.method == 'POST':
+        form = NewInsuranceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('insurances')  # Přesměrování na seznam pojištění po úspěšném vytvoření
+    else:
+        form = NewInsuranceForm()
+
+    context = {
+        'form': form,
+        'insured': Insured.objects.all(),
+    }
+    return render(request, 'new_insurance.html', context)
+
+
 def insurance_detail(request, insurance_id):
     insurance = Insurance.objects.get(id=insurance_id)
     insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
@@ -103,6 +120,7 @@ def delete_insurance(request, insurance_id):
 
 def edit_insurance(request, insurance_id):
     insurance = get_object_or_404(Insurance, id=insurance_id)
+    insured = insurance.insurance.first()
 
     if request.method == 'POST':
         form = InsuranceForm(request.POST, instance=insurance)
@@ -115,8 +133,9 @@ def edit_insurance(request, insurance_id):
     context = {
         'form': form,
         'insurance': insurance,
-    }
+        'insured': insured,
 
+    }
     return render(request, 'edit_insurance.html', context)
 
 
