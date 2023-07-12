@@ -3,10 +3,12 @@
 {% block title %}Edit Event{% endblock %}
 
 {% block content %}
-  <h2>Edit Event</h2>
-  <form method="post">
+  <h2 class="create-event-h">Edit Event</h2>
+  <form method="post" class="my-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
+    <div class="submit-button-create-event">
+        <button type="submit" class="submit-button">Save</button>
+    </div>
   </form>
 {% endblock %}
