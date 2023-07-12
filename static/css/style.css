@@ -365,7 +365,8 @@
 }
 
 
-.insurance-detail {
+.insurance-detail,
+.insurance-event-detail {
   max-width: 40%;
   padding: 1% 0 0 3%;
   border-radius: 8px;
@@ -418,6 +419,26 @@
     display: flex;
     justify-content: center;
     margin-top: 3%;
+}
+
+.insurance-detail,
+.insurance-event-detail {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.insurance-h,
+.insurance-event-detail-h {
+  margin-top: 20px;
+}
+
+.insurance-info,
+.insurance-event-info {
+  margin-top: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 400px;
+  background-color: #f4f4f4;
 }
 
 
