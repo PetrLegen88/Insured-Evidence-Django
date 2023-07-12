@@ -52,6 +52,7 @@
 .insured-h, .insurances-h, .insured-events-h {
     margin-top: 5%;
     margin-left: 8%;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -111,6 +112,7 @@
  .insured-events-table th, .insured-events-table td {
     padding: 6px;
     border: 1px solid #1a001a;
+
 
 }
 .insured-table th:nth-child(2),
@@ -310,6 +312,7 @@
 .add-insurance-h {
   padding: 1% 0 0 3%;
   font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .form-row-add-insurance {
@@ -382,6 +385,40 @@
   margin-bottom: 8px;
 }
 
+.my-form {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  align-items: start;
+  margin: 0 38% 0 38%;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.my-form input,
+.my-form select,
+.my-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 3px;
+  font-size: 18px;
+
+}
+
+.create-event-h {
+    margin-left: 38%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.submit-button-create-event {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
 
 
 
