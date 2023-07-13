@@ -386,7 +386,9 @@
   margin-bottom: 8px;
 }
 
-.my-form {
+.my-form,
+.sign-up-form,
+.login-form {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
@@ -399,7 +401,13 @@
 
 .my-form input,
 .my-form select,
-.my-form textarea {
+.my-form textarea,
+.sign-up-form input,
+.sign-up-form select,
+.sign-up-form textarea,
+.login-form input,
+.login-form select,
+.login-form textarea{
   width: 100%;
   box-sizing: border-box;
   padding: 6px;
@@ -410,7 +418,9 @@
 
 }
 
-.create-event-h {
+.create-event-h,
+.sign-up-h,
+.login-h {
     margin-left: 38%;
     font-family: 'Open Sans', sans-serif;
 }
@@ -419,6 +429,7 @@
     display: flex;
     justify-content: center;
     margin-top: 3%;
+
 }
 
 .insurance-detail,
