@@ -15,7 +15,9 @@
         <th>Subject</th>
         <th>Amount</th>
         <th>Valid Until</th>
+        {% if has_permission or user.is_superuser %}
         <th>Actions</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -24,16 +26,20 @@
           <td><a href="{% url 'insurance_detail' insurance_id=insurance.id %}">{{ insurance.get_type_display }}</a></td>
           <td>
             {% for insured in insurance.insurance.all %}
-              <a href="{% url 'insured_detail' insured_id=insured.id %}">{{ insured.first_name }} {{ insured.last_name }}</a>{% if not forloop.last %}, {% endif %}
+              <a href="{% url 'insured_detail' insured_id=insured.id %}">{{ insured.first_name }} {{ insured.last_name }}
+              </a>{% if not forloop.last %}, {% endif %}
             {% endfor %}
           </td>
           <td>{{ insurance.subject }}</td>
           <td>{{ insurance.amount }} Kč</td>
           <td>{{ insurance.valid_until }}</td>
+          {% if has_permission or user.is_superuser %}
           <td>
-            <a href="{% url 'edit_insurance' insurance_id=insurance.id %}" class="button button-edit">Edit</a>
-            <a href="{% url 'delete_insurance' insurance_id=insurance.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this insurance?')">Delete</a>
+              <a href="{% url 'edit_insurance' insurance_id=insurance.id %}" class="button button-edit">Edit</a>
+              <a href="{% url 'delete_insurance' insurance_id=insurance.id %}" class="button button-delete"
+                 onclick="return confirm('Are you sure you want to delete this insurance?')">Delete</a>
           </td>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>

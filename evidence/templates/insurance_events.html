@@ -13,7 +13,9 @@
         <th>Subject</th>
         <th>Date</th>
         <th>Status</th>
+        {% if has_permission or user.is_superuser %}
         <th>Actions</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -39,10 +41,12 @@
           <td>{{ event.subject }}</td>
           <td>{{ event.date }}</td>
           <td>{{ event.status }}</td>
+          {% if has_permission or user.is_superuser %}
           <td>
             <a href="{% url 'delete_event' event_id=event.id %}" class="button button-delete" onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>
             <a href="{% url 'edit_event' event_id=event.id %}" class="button button-edit">Edit</a>
           </td>
+          {% endif %}
         </tr>
       {% endfor %}
     </tbody>
