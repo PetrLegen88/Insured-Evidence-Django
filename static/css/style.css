@@ -103,7 +103,6 @@
     margin-right: auto;
     border-collapse: collapse;
     font-family: 'Open Sans', sans-serif;
-
 }
 
 .insured-table th, .insured-table td,
@@ -112,36 +111,10 @@
  .insured-events-table th, .insured-events-table td {
     padding: 6px;
     border: 1px solid #1a001a;
-
-
-}
-.insured-table th:nth-child(2),
-.insured-table td:nth-child(2){
-    width: 40%;
-}
-
-.insured-table th:nth-child(1),
-.insured-table td:nth-child(1),
-.insured-table th:nth-child(3),
-.insured-table td:nth-child(3) {
-    width: 30%;
-}
-
-.policies-table th:nth-child(2),
-.policies-table td:nth-child(2){
-    width: 40%;
-}
-
-.policies-table th:nth-child(1),
-.policies-table td:nth-child(1),
-.policies-table th:nth-child(3),
-.policies-table td:nth-child(3) {
-    width: 30%;
 }
 
 .insured-table th, .policies-table th {
     text-align: left;
-
 }
 
 .insured-info {
@@ -167,7 +140,6 @@
 .contact-info {
     margin: 5% 0 0 10%;
     font-size: 20px;
-
 }
 
 .contact-info p {
@@ -216,7 +188,6 @@
     padding: 1% 0 0 2%;
     border-radius: 8px;
     font-family: 'Open Sans', sans-serif;
-
 }
 
 .form-column {
@@ -224,12 +195,10 @@
     width: 40%;
     vertical-align: top;
     margin-right: 4%;
-
 }
 
 .form-row {
     margin-bottom: 20px;
-
 }
 
 .form-row label {
@@ -274,8 +243,6 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-
-
 .add-insurance-form {
   max-width: 40%;
   padding: 1% 0 0 3%;
@@ -283,19 +250,15 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4%;
-
-
 }
 
 .form-row-add-insurance-type {
   grid-column: 1 / span 2;
-
 }
 
 
 .form-row-add-insurance-type label {
   font-size: 18px;
-
 }
 
 .form-row-add-insurance-type select {
@@ -306,7 +269,6 @@
   border-radius: 4px;
   margin: 10px 0 10px 0;
   color: #595959;
-
 }
 
 .add-insurance-h {
@@ -324,7 +286,6 @@
 .form-column-add-insurance {
   width: 100%;
   padding: 0 1% 2% 0;
-
 }
 
 .form-row-add-insurance label {
@@ -396,7 +357,6 @@
   align-items: start;
   margin: 0 38% 0 38%;
   font-family: 'Open Sans', sans-serif;
-
 }
 
 .my-form input,
@@ -415,7 +375,6 @@
   border-radius: 4px;
   margin-top: 3px;
   font-size: 18px;
-
 }
 
 .create-event-h,
@@ -429,7 +388,6 @@
     display: flex;
     justify-content: center;
     margin-top: 3%;
-
 }
 
 .insurance-detail,
