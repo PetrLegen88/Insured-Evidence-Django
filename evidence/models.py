@@ -1,23 +1,25 @@
 from django.contrib.auth.models import User
 from django.db import models
+from enum import Enum
+
+
+class RoleEnum(Enum):
+    Policyholder = 'insurer'
+    Insured = 'insured'
 
 
 class Insured(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='insured', null=True)
-    ROLE_CHOICES = (
-        ('insurer', 'Insurer'),
-        ('insured', 'Insured'),
-    )
-
     first_name = models.CharField(max_length=100)
     profile_photo = models.ImageField(upload_to='profile_photos', blank=True, null=True)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, null=True)
+    role = models.CharField(max_length=10, choices=[(tag.value, tag.name) for tag in RoleEnum], null=True)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
     zipcode = models.CharField(max_length=16)
     phone = models.CharField(max_length=16)
+    is_policyholder = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['id']

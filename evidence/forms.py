@@ -5,7 +5,7 @@ from .models import Insured, Insurance, InsuranceEvent
 class InsuredForm(forms.ModelForm):
     class Meta:
         model = Insured
-        fields = ['first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zipcode']
+        fields = ['first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zipcode', 'role']
 
 
 class InsuranceForm(forms.ModelForm):

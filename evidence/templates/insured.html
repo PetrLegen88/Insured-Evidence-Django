@@ -29,6 +29,7 @@
                 <th>Name</th>
                 <th>City</th>
                 <th>Phone</th>
+                <th>Role</th>
                 {% if has_permission or user.is_superuser %}
                 <th>Actions</th>
                 {% endif %}
@@ -40,6 +41,13 @@
                     <td><a href="{% url 'insured_detail' insured.id %}">{{ insured.first_name }} {{ insured.last_name }}</a></td>
                     <td>{{ insured.street }}, {{ insured.city }}</td>
                     <td>{{ insured.phone }}</td>
+                    <td>
+                      {% if insured.is_policyholder %}
+                        <span class="policyholder-badge">Policyholder</span>
+                      {% else %}
+                        <span class="insured-badge">Insured</span>
+                       {% endif %}
+                    </td>
                     {% if has_permission or user.is_superuser %}
                     <td>
                         <a href="{% url 'delete_insured' insured.id %}" class="button button-delete"

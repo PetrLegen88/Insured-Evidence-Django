@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm
-from .models import Insured, Insurance, InsuranceEvent
+from .models import Insured, Insurance, InsuranceEvent, RoleEnum
 from django.contrib import messages
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -13,7 +13,7 @@ def homepage(request):
 
 def insured(request):
     insured_list = Insured.objects.prefetch_related('insurance')
-    paginator = Paginator(insured_list, 3)
+    paginator = Paginator(insured_list, 7)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'insured.html', {'page_obj': page_obj})
@@ -23,8 +23,11 @@ def new_insured(request):
     if request.method == 'POST':
         form = InsuredForm(request.POST)
         if form.is_valid():
+            insured = form.save(commit=False)
+            if insured.role == RoleEnum.INSURER.value:
+                insured.is_policyholder = True
+            insured.save()
             messages.success(request, 'The insured has been saved.')
-            form.save()
             return redirect('insured')
     else:
         form = InsuredForm()
