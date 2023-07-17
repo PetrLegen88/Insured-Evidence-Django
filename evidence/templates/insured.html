@@ -42,11 +42,11 @@
                     <td>{{ insured.street }}, {{ insured.city }}</td>
                     <td>{{ insured.phone }}</td>
                     <td>
-                      {% if insured.is_policyholder %}
-                        <span class="policyholder-badge">Policyholder</span>
-                      {% else %}
-                        <span class="insured-badge">Insured</span>
-                       {% endif %}
+                        {% if insured.role == 'insurer' %}
+                           <span class="policyholder-badge">Policyholder</span>
+                        {% else %}
+                           <span class="insured-badge">Insured</span>
+                        {% endif %}
                     </td>
                     {% if has_permission or user.is_superuser %}
                     <td>

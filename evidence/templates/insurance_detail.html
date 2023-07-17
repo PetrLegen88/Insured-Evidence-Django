@@ -7,11 +7,27 @@
         <h2 class="insurance-h">Insurance Detail</h2>
         <div class="insurance-info">
             <p><strong>Type:</strong> {{ insurance.get_type_display }}</p>
-            <p><strong>Insured Name:</strong> {{ insurance.insured_names }}</p>
-            <p><strong>Covered Parties:</strong></p>
+            <p><strong>Insured Name:</strong> {% for insured in insurance.insurance.all %}
+                {% if insured.role != 'insurer' %}
+                    {% if not forloop.first %}, {% endif %}
+                    {{ insured.first_name }} {{ insured.last_name }}
+                {% endif %}
+            {% empty %}
+                No insured
+            {% endfor %}</p>
+            <p><strong>Covered Parties</strong>: {% for insured in insurance.insurance.all %}
+                {% if insured.role == 'insurer' %}
+                    {{ insured.first_name }} {{ insured.last_name }}{% if not forloop.last %}, {% endif %}
+                {% endif %}
+            {% empty %}
+                No policyholders
+            {% endfor %}</p>
             <p><strong>Subject:</strong> {{ insurance.subject }}</p>
             <p><strong>Amount:</strong> {{ insurance.amount }} Kč</p>
             <p><strong>Valid Until:</strong> {{ insurance.valid_until }}</p>
+        </div>
+        <div class="submit-button-add-policyholder">
+            <a href="{% url 'add_policyholder' insurance_id=insurance.id %}" class="submit-button">Add Policyholder</a>
         </div>
     </div>
 {% endblock %}

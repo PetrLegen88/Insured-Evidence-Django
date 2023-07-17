@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm
+from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm, PolicyholderForm
 from .models import Insured, Insurance, InsuranceEvent, RoleEnum
 from django.contrib import messages
 from django.urls import reverse
@@ -24,7 +24,7 @@ def new_insured(request):
         form = InsuredForm(request.POST)
         if form.is_valid():
             insured = form.save(commit=False)
-            if insured.role == RoleEnum.INSURER.value:
+            if insured.role == RoleEnum.Policyholder.value:
                 insured.is_policyholder = True
             insured.save()
             messages.success(request, 'The insured has been saved.')
@@ -82,6 +82,25 @@ def new_insurance(request):
     return render(request, 'new_insurance.html', context)
 
 
+def add_policyholder(request, insurance_id):
+    insurance = get_object_or_404(Insurance, id=insurance_id)
+
+    if request.method == 'POST':
+        form = PolicyholderForm(request.POST)
+        if form.is_valid():
+            policyholder = form.cleaned_data['insured']
+            insurance.insurance.add(policyholder)
+            return redirect('insurance_detail', insurance_id=insurance.id)
+    else:
+        form = PolicyholderForm()
+
+    context = {
+        'form': form,
+        'insurance': insurance,
+    }
+    return render(request, 'add_policyholder.html', context)
+
+
 def insurance_detail(request, insurance_id):
     insurance = Insurance.objects.get(id=insurance_id)
     insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
@@ -106,6 +125,7 @@ def edit_insured(request, insured_id):
     if request.method == 'POST':
         form = InsuredForm(request.POST, instance=insured)
         if form.is_valid():
+            print('Role value:', form.cleaned_data['role'])
             form.save()
             return redirect('insured')
     else:

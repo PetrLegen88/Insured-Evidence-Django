@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Policyholder{% endblock %}
+
+{% block content %}
+  <h2 class="add-policyholder-h">Add Policyholder</h2>
+  <form method="post" class="my-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="submit-button-add-policyholder">
+        <button type="submit" class="submit-button">Save</button>
+    </div>
+  </form>
+{% endblock %}

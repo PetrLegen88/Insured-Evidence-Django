@@ -13,7 +13,7 @@ class RoleEnum(Enum):
 
 
 class Insured(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='insured', null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='insured', null=True, blank=True)
     first_name = models.CharField(max_length=100)
     profile_photo = models.ImageField(upload_to='profile_photos', blank=True, null=True)
     last_name = models.CharField(max_length=100)

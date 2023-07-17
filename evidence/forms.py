@@ -1,5 +1,5 @@
 from django import forms
-from .models import Insured, Insurance, InsuranceEvent
+from .models import Insured, Insurance, InsuranceEvent, RoleEnum
 
 
 class InsuredForm(forms.ModelForm):
@@ -34,3 +34,11 @@ class NewInsuranceForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+class PolicyholderForm(forms.Form):
+    insured = forms.ModelChoiceField(
+        queryset=Insured.objects.filter(role=RoleEnum.Policyholder.value),
+        label='Policyholder',
+        widget=forms.Select
+    )

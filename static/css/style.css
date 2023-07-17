@@ -396,6 +396,7 @@
 }
 
 .create-event-h,
+.add-policyholder-h,
 .sign-up-h,
 .login-h {
     margin-left: 38%;
@@ -405,6 +406,9 @@
 .submit-button-create-event {
     display: flex;
     justify-content: center;
+    margin-top: 3%;
+}
+.submit-button-add-policyholder {
     margin-top: 3%;
 }
 
