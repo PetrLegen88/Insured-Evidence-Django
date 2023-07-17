@@ -9,8 +9,10 @@
         <div class="thumbnail">
             {% if insured.profile_photo %}
                 <img src="{{ insured.profile_photo.url }}" alt="Thumbnail">
+                <p class="role">{{ insured.get_role_display }}</p>
             {% else %}
                 <img src="{% static 'evidence/default_thumbnail.jpg' %}" alt="Default Thumbnail">
+                <p class="role">{{ insured.get_role_display }}</p>
             {% endif %}
         </div>
         <div class="personal-info">

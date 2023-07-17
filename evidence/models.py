@@ -7,6 +7,10 @@ class RoleEnum(Enum):
     Policyholder = 'insurer'
     Insured = 'insured'
 
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]
+
 
 class Insured(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='insured', null=True)
@@ -14,7 +18,7 @@ class Insured(models.Model):
     profile_photo = models.ImageField(upload_to='profile_photos', blank=True, null=True)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    role = models.CharField(max_length=10, choices=[(tag.value, tag.name) for tag in RoleEnum], null=True)
+    role = models.CharField(max_length=20, choices=RoleEnum.choices(), null=True)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=64)
     zipcode = models.CharField(max_length=16)
