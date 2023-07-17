@@ -59,7 +59,7 @@ def insurances(request):
     for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
         insurance.insured_names = ", ".join(insured_names)
-    paginator = Paginator(insurance_objects, 3)
+    paginator = Paginator(insurance_objects, 7)
     page_number = request.GET.get('page')
     insurances = paginator.get_page(page_number)
     return render(request, 'insurances.html', {'insurances': insurances, 'page_obj': insurances})
@@ -149,7 +149,7 @@ def insurance_events(request):
         setattr(event, 'insured_names', insured_names)
 
     events = InsuranceEvent.objects.order_by('id')
-    paginator = Paginator(events, 1)
+    paginator = Paginator(events, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

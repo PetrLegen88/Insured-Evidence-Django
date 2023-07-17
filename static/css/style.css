@@ -188,16 +188,19 @@
     padding: 1% 0 0 2%;
     border-radius: 8px;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 .form-column {
     display: inline-block;
-    width: 40%;
+    width: 45%;
     vertical-align: top;
     margin-right: 4%;
 }
 
 .form-row {
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
@@ -205,6 +208,7 @@
     display: block;
     font-size: 18px;
     margin-bottom: 4px;
+    box-sizing: border-box;
 }
 
 .form-row input {
@@ -214,6 +218,14 @@
     border-radius: 4px;
     color: #999;
 }
+.form-row select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #999;
+}
+
 
 .submit-button-container {
     display: flex;
