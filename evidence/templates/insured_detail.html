@@ -34,6 +34,7 @@
                 <tr>
                     <th>Insurance</th>
                     <th>Amount</th>
+                    <th>Subject</th>
                     {% if has_permission or user.is_superuser %}
                     <th>Actions</th>
                     {% endif %}
@@ -44,6 +45,7 @@
                 <tr>
                     <td><a href="{% url 'insurance_detail' insurance_id=policy.id %}">{{ policy.get_type_display }}</a></td>
                     <td>{{ policy.amount }} Kč</td>
+                    <td>{{ policy.subject }}</td>
                     {% if has_permission or user.is_superuser %}
                     <td>
                         <a href="{% url 'delete_insurance' insurance_id=policy.id %}" class="button button-delete"
@@ -61,7 +63,7 @@
         {% if has_permission or user.is_superuser %}
             <a href="{% url 'edit_insured' insured.id %}" class="button button-edit">Edit Insured</a>
             <a href="{% url 'delete_insured' insured.id %}" class="button button-delete"
-               onclick="return confirm('Are you sure you want to delete this insured?')">Delete</a>
+               onclick="return confirm('Are you sure you want to delete this insured?')">Delete Insured</a>
         {% endif %}
     </div>
 {% endblock %}
