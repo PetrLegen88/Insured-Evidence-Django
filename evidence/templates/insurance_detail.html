@@ -9,8 +9,7 @@
             <p><strong>Type:</strong> {{ insurance.get_type_display }}</p>
             <p><strong>Insured Name:</strong> {% for insured in insurance.insurance.all %}
                 {% if insured.role != 'insurer' %}
-                    {% if not forloop.first %}, {% endif %}
-                    {{ insured.first_name }} {{ insured.last_name }}
+                    {{ insured.first_name }} {{ insured.last_name }}{% if not forloop.first %}, {% endif %}
                 {% endif %}
             {% empty %}
                 No insured

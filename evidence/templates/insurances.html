@@ -26,9 +26,12 @@
           <td><a href="{% url 'insurance_detail' insurance_id=insurance.id %}">{{ insurance.get_type_display }}</a></td>
           <td>
             {% for insured in insurance.insurance.all %}
-              <a href="{% url 'insured_detail' insured_id=insured.id %}">{{ insured.first_name }} {{ insured.last_name }}
-              </a>{% if not forloop.last %}, {% endif %}
+            {% if not insured.is_policyholder %}
+            <a href="{% url 'insured_detail' insured_id=insured.id %}">{{ insured.first_name }} {{ insured.last_name }}
+              {% endif %}
+            </a>
             {% endfor %}
+
           </td>
           <td>{{ insurance.subject }}</td>
           <td>{{ insurance.amount }} Kč</td>

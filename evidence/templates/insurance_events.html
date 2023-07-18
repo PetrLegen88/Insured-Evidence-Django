@@ -33,9 +33,11 @@
           </td>
           <td>
               {% for insured in event.insurance.insurance.all %}
+            {% if not insured.is_policyholder %}
             <a href="{% url 'insured_detail' insured.id %}">
               {{ insured.first_name }} {{ insured.last_name }}
-            </a>{% if not forloop.last %}, {% endif %}
+            </a>
+            {% endif %}
               {% endfor %}
           </td>
           <td>{{ event.subject }}</td>
