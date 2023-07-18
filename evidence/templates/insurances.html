@@ -3,6 +3,13 @@
 {% block title %}Insurances{% endblock %}
 
 {% block content %}
+  {% if messages %}
+    <div class="error-message">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
   <h2 class="insurances-h">Insurances</h2>
   <div class="filter-container">
     <form method="GET" class="filter-form">
@@ -17,7 +24,7 @@
         <button type="submit" class="filter-button">Filter</button>
         <a href="{% url 'insurances' %}" class="reset-filter-button">Reset</a>
     </form>
-  </div>
+    </div>
   <div class="main-buttons">
         <a href="{% url 'new_insurance' %}" class="button button-add">New Insurance</a>
   </div>

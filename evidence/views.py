@@ -1,3 +1,4 @@
+from decimal import Decimal, InvalidOperation
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm, PolicyholderForm
@@ -86,8 +87,11 @@ def insurances(request):
         elif filter_by == 'subject':
             insurance_objects = insurance_objects.filter(subject__icontains=keyword)
         elif filter_by == 'amount':
-            insurance_objects = insurance_objects.filter(amount__gt=keyword)
-
+            try:
+                keyword = Decimal(keyword)
+                insurance_objects = insurance_objects.filter(amount__gt=keyword)
+            except (ValueError, TypeError, InvalidOperation):
+                messages.error(request, 'You have to enter number.')
 
     for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
@@ -98,7 +102,6 @@ def insurances(request):
     insurances = paginator.get_page(page_number)
 
     return render(request, 'insurances.html', {'insurances': insurances, 'page_obj': insurances})
-
 
 
 @login_required
