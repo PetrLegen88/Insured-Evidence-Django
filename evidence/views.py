@@ -86,9 +86,8 @@ def insurances(request):
         elif filter_by == 'subject':
             insurance_objects = insurance_objects.filter(subject__icontains=keyword)
         elif filter_by == 'amount':
-            insurance_objects = insurance_objects.filter(amount__gt=str(keyword))
-        elif filter_by == 'valid_until':
-            insurance_objects = insurance_objects.filter(valid_until__icontains=keyword)
+            insurance_objects = insurance_objects.filter(amount__gt=keyword)
+
 
     for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
@@ -200,12 +199,27 @@ def edit_insurance(request, insurance_id):
 
 
 def insurance_events(request):
+    filter_by = request.GET.get('filter_by')
+    keyword = request.GET.get('keyword')
+
     events = InsuranceEvent.objects.all()
     for event in events:
         insured_names = ", ".join([insured.first_name for insured in event.insurance.insurance.all()])
         setattr(event, 'insured_names', insured_names)
 
-    events = InsuranceEvent.objects.order_by('id')
+    if filter_by and keyword:
+        if filter_by == 'event_id':
+            events = events.filter(id__icontains=keyword)
+        elif filter_by == 'insurance':
+            events = events.filter(insurance__type__icontains=keyword)
+        elif filter_by == 'insured':
+            events = events.filter(insurance__insurance__first_name__icontains=keyword) | \
+                     events.filter(insurance__insurance__last_name__icontains=keyword)
+        elif filter_by == 'subject':
+            events = events.filter(subject__icontains=keyword)
+        elif filter_by == 'status':
+            events = events.filter(status__icontains=keyword)
+
     paginator = Paginator(events, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

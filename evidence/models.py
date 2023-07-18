@@ -42,7 +42,7 @@ class Insurance(models.Model):
     insurance = models.ManyToManyField(Insured, related_name='insurance')
     type = models.CharField(max_length=32, choices=INSURANCE_TYPE)
     subject = models.CharField(max_length=32)
-    amount = models.CharField(max_length=32)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     valid_from = models.DateField()
     valid_until = models.DateField()
 

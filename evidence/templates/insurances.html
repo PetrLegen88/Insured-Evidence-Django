@@ -12,7 +12,6 @@
             <option value="insured_name" {% if request.GET.filter_by == "insured_name" %}selected{% endif %}>Insured Name</option>
             <option value="subject" {% if request.GET.filter_by == "subject" %}selected{% endif %}>Subject</option>
             <option value="amount" {% if request.GET.filter_by == "amount" %}selected{% endif %}>Amount</option>
-            <option value="valid_until" {% if request.GET.filter_by == "valid_until" %}selected{% endif %}>Valid Until</option>
         </select>
         <input type="text" name="keyword" value="{{ request.GET.keyword }}">
         <button type="submit" class="filter-button">Filter</button>
@@ -46,7 +45,6 @@
               {% endif %}
             </a>
             {% endfor %}
-
           </td>
           <td>{{ insurance.subject }}</td>
           <td>{{ insurance.amount }} Kč</td>

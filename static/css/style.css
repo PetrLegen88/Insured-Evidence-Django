@@ -402,6 +402,10 @@
     margin-left: 38%;
     font-family: 'Open Sans', sans-serif;
 }
+.event-id {
+    display: flex;
+    justify-content: center;
+}
 
 .submit-button-create-event {
     display: flex;

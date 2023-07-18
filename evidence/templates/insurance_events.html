@@ -4,10 +4,27 @@
 
 {% block content %}
   <h2 class="insured-events-h">Insured Events</h2>
+
+  <div class="filter-container">
+    <form method="GET" class="filter-form">
+      <select name="filter_by">
+        <option value="" {% if not request.GET.filter_by %}selected{% endif %}>All</option>
+        <option value="event_id" {% if request.GET.filter_by == "event_id" %}selected{% endif %}>Event id</option>
+        <option value="insurance" {% if request.GET.filter_by == "insurance" %}selected{% endif %}>Insurance</option>
+        <option value="insured" {% if request.GET.filter_by == "insured" %}selected{% endif %}>Insured</option>
+        <option value="subject" {% if request.GET.filter_by == "subject" %}selected{% endif %}>Subject</option>
+        <option value="status" {% if request.GET.filter_by == "status" %}selected{% endif %}>Status</option>
+      </select>
+      <input type="text" name="keyword" value="{{ request.GET.keyword }}">
+      <button type="submit" class="filter-button">Filter</button>
+      <a href="{% url 'insurance_events' %}" class="reset-filter-button">Reset</a>
+    </form>
+  </div>
+
   <table class="insured-events-table">
     <thead>
       <tr>
-        <th>Event</th>
+        <th>Event id</th>
         <th>Insurance</th>
         <th>Insured</th>
         <th>Subject</th>
@@ -22,23 +39,23 @@
       {% for event in page_obj %}
         <tr>
           <td>
-            <a href="{% url 'insurance_event_detail' event_id=event.id %}">
-              Event - #{{ event.id }}
+            <a href="{% url 'insurance_event_detail' event_id=event.id %}" class="event-id">
+              #{{ event.id }}
             </a>
           </td>
           <td>
-          <a href="{% url 'insurance_detail' event.insurance.id %}">
-            {{ event.insurance.get_type_display }} - {{ event.insurance.subject }}
-          </a>
+            <a href="{% url 'insurance_detail' event.insurance.id %}">
+              {{ event.insurance.get_type_display }} - {{ event.insurance.subject }}
+            </a>
           </td>
           <td>
-              {% for insured in event.insurance.insurance.all %}
-            {% if not insured.is_policyholder %}
-            <a href="{% url 'insured_detail' insured.id %}">
-              {{ insured.first_name }} {{ insured.last_name }}
-            </a>
-            {% endif %}
-              {% endfor %}
+            {% for insured in event.insurance.insurance.all %}
+              {% if not insured.is_policyholder %}
+                <a href="{% url 'insured_detail' insured.id %}">
+                  {{ insured.first_name }} {{ insured.last_name }}
+                </a>
+              {% endif %}
+            {% endfor %}
           </td>
           <td>{{ event.subject }}</td>
           <td>{{ event.date }}</td>
@@ -53,6 +70,7 @@
       {% endfor %}
     </tbody>
   </table>
+
   <div class="main-buttons">
     <a href="{% url 'create_event' %}" class="button button-add">Create Event</a>
   </div>
@@ -67,5 +85,5 @@
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}">Next</a>
     {% endif %}
-    </div>
+  </div>
 {% endblock %}
