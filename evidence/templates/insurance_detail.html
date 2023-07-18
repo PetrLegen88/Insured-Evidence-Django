@@ -25,8 +25,10 @@
             <p><strong>Amount:</strong> {{ insurance.amount }} Kč</p>
             <p><strong>Valid Until:</strong> {{ insurance.valid_until }}</p>
         </div>
+        {% if has_permission or user.is_superuser %}
         <div class="submit-button-add-policyholder">
             <a href="{% url 'add_policyholder' insurance_id=insurance.id %}" class="submit-button">Add Policyholder</a>
         </div>
+        {% endif %}
     </div>
 {% endblock %}
