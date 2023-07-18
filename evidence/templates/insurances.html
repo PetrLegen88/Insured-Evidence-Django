@@ -4,6 +4,21 @@
 
 {% block content %}
   <h2 class="insurances-h">Insurances</h2>
+  <div class="filter-container">
+    <form method="GET" class="filter-form">
+        <select name="filter_by">
+            <option value="" {% if not request.GET.filter_by %}selected{% endif %}>All</option>
+            <option value="insurance" {% if request.GET.filter_by == "insurance" %}selected{% endif %}>Insurance</option>
+            <option value="insured_name" {% if request.GET.filter_by == "insured_name" %}selected{% endif %}>Insured Name</option>
+            <option value="subject" {% if request.GET.filter_by == "subject" %}selected{% endif %}>Subject</option>
+            <option value="amount" {% if request.GET.filter_by == "amount" %}selected{% endif %}>Amount</option>
+            <option value="valid_until" {% if request.GET.filter_by == "valid_until" %}selected{% endif %}>Valid Until</option>
+        </select>
+        <input type="text" name="keyword" value="{{ request.GET.keyword }}">
+        <button type="submit" class="filter-button">Filter</button>
+        <a href="{% url 'insurances' %}" class="reset-filter-button">Reset</a>
+    </form>
+  </div>
   <div class="main-buttons">
         <a href="{% url 'new_insurance' %}" class="button button-add">New Insurance</a>
   </div>

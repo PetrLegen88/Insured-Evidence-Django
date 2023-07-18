@@ -12,11 +12,28 @@ def homepage(request):
 
 
 def insured(request):
+    filter_by = request.GET.get('filter_by')
+    keyword = request.GET.get('keyword')
+
     insured_list = Insured.objects.prefetch_related('insurance')
+
+    if filter_by == 'name':
+        insured_list = insured_list.filter(first_name__icontains=keyword) | insured_list.filter(last_name__icontains=keyword)
+    elif filter_by == 'city':
+        insured_list = insured_list.filter(city__icontains=keyword)
+    elif filter_by == 'street':
+        insured_list = insured_list.filter(street__icontains=keyword)
+    elif filter_by == 'role':
+        insured_list = insured_list.filter(role__icontains=keyword)
+
     paginator = Paginator(insured_list, 7)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'insured.html', {'page_obj': page_obj})
+
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'insured.html', context)
 
 
 def new_insured(request):
@@ -55,14 +72,34 @@ def add_insurance(request, insured_id):
 
 
 def insurances(request):
+    filter_by = request.GET.get('filter_by')
+    keyword = request.GET.get('keyword')
+
     insurance_objects = Insurance.objects.all()
+
+    if filter_by and keyword:
+        if filter_by == 'insurance':
+            insurance_objects = insurance_objects.filter(type__icontains=keyword)
+        elif filter_by == 'insured_name':
+            insurance_objects = insurance_objects.filter(insurance__first_name__icontains=keyword) | \
+                                insurance_objects.filter(insurance__last_name__icontains=keyword)
+        elif filter_by == 'subject':
+            insurance_objects = insurance_objects.filter(subject__icontains=keyword)
+        elif filter_by == 'amount':
+            insurance_objects = insurance_objects.filter(amount__gt=str(keyword))
+        elif filter_by == 'valid_until':
+            insurance_objects = insurance_objects.filter(valid_until__icontains=keyword)
+
     for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
         insurance.insured_names = ", ".join(insured_names)
+
     paginator = Paginator(insurance_objects, 7)
     page_number = request.GET.get('page')
     insurances = paginator.get_page(page_number)
+
     return render(request, 'insurances.html', {'insurances': insurances, 'page_obj': insurances})
+
 
 
 @login_required

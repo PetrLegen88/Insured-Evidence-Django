@@ -20,6 +20,20 @@
     </script>
     {% endif %}
     <h2 class="insured-h">Insureds</h2>
+    <div class="filter-container">
+        <form method="GET" class="filter-form">
+            <select name="filter_by">
+                <option value="" {% if not request.GET.filter_by %}selected{% endif %}>All</option>
+                <option value="name" {% if request.GET.filter_by == "name" %}selected{% endif %}>Name</option>
+                <option value="city" {% if request.GET.filter_by == "city" %}selected{% endif %}>City</option>
+                <option value="street" {% if request.GET.filter_by == "street" %}selected{% endif %}>Street</option>
+                <option value="role" {% if request.GET.filter_by == "role" %}selected{% endif %}>Role</option>
+            </select>
+            <input type="text" name="keyword" value="{{ request.GET.keyword }}">
+            <button type="submit" class="filter-button">Filter</button>
+            <a href="{% url 'insured' %}" class="reset-filter-button">Reset</a>
+        </form>
+    </div>
     <div class="main-buttons">
         <a href="{% url 'new_insured' %}" class="button button-add">New Insured</a>
     </div>
@@ -43,7 +57,7 @@
                     <td>{{ insured.phone }}</td>
                     <td>
                         {% if insured.role == 'insurer' %}
-                           <span class="policyholder-badge">Policyholder</span>
+                           <span class="policyholder-badge">Insurer</span>
                         {% else %}
                            <span class="insured-badge">Insured</span>
                         {% endif %}
