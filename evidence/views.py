@@ -110,7 +110,7 @@ def new_insurance(request):
         form = NewInsuranceForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('insurances')  # Přesměrování na seznam pojištění po úspěšném vytvoření
+            return redirect('insurances')
     else:
         form = NewInsuranceForm()
 
@@ -164,7 +164,6 @@ def edit_insured(request, insured_id):
     if request.method == 'POST':
         form = InsuredForm(request.POST, instance=insured)
         if form.is_valid():
-            print('Role value:', form.cleaned_data['role'])
             form.save()
             return redirect('insured')
     else:

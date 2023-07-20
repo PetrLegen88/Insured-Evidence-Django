@@ -23,6 +23,7 @@
             {% endfor %}</p>
             <p><strong>Subject:</strong> {{ insurance.subject }}</p>
             <p><strong>Amount:</strong> {{ insurance.amount }} Kč</p>
+            <p><strong>Valid From:</strong> {{ insurance.valid_from }}</p>
             <p><strong>Valid Until:</strong> {{ insurance.valid_until }}</p>
         </div>
         {% if has_permission or user.is_superuser %}
