@@ -19,7 +19,8 @@ def insured(request):
     insured_list = Insured.objects.prefetch_related('insurance')
 
     if filter_by == 'name':
-        insured_list = insured_list.filter(first_name__icontains=keyword) | insured_list.filter(last_name__icontains=keyword)
+        insured_list = insured_list.filter(first_name__icontains=keyword) | insured_list.filter(
+            last_name__icontains=keyword)
     elif filter_by == 'city':
         insured_list = insured_list.filter(city__icontains=keyword)
     elif filter_by == 'street':
@@ -91,7 +92,7 @@ def insurances(request):
                 keyword = Decimal(keyword)
                 insurance_objects = insurance_objects.filter(amount__gt=keyword)
             except (ValueError, TypeError, InvalidOperation):
-                messages.error(request, 'You have to enter number.')
+                messages.error(request, 'Wrong input! You have to enter number.')
 
     for insurance in insurance_objects:
         insured_names = [f"{insured.first_name} {insured.last_name}" for insured in insurance.insurance.all()]
@@ -240,16 +241,10 @@ def insurance_event_detail(request, event_id):
 
 
 def delete_event(request, event_id):
-    event = InsuranceEvent.objects.get(id=event_id)
-
-    if request.method == 'POST':
-        event.delete()
-        return redirect('insurance_events')
-
-    context = {
-        'event': event
-    }
-    return render(request, 'delete_event.html', context)
+    event = get_object_or_404(InsuranceEvent, pk=event_id)
+    event.delete()
+    messages.success(request, 'The event has been deleted.')
+    return redirect('insurance_events')
 
 
 def create_event(request):
