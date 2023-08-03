@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Complete Event{% endblock %}
+
+{% block content %}
+<h2 class="create-event-h">Complete Event</h2>
+
+  <form method="post" class="my-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="submit-button-create-event">
+      <button type="submit" class="submit-button">Complete</button>
+    </div>
+  </form>
+{% endblock %}

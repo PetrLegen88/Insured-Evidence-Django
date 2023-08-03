@@ -76,11 +76,11 @@
     </tbody>
   </table>
 
-  <div class="main-buttons">
-  <a href="{% url 'create_event' %}" class="button button-add">Create Event</a>
-  {% if has_permission or user.is_superuser %}
-  <a href="#" class="button button-add">Complete Event</a>
-  {% endif %}
+   <div class="main-buttons">
+    <a href="{% url 'create_event' %}" class="button button-add">Create Event</a>
+    {% if has_permission or user.is_superuser %}
+      <a href="{% url 'complete_event' %}" class="button button-add">Complete Event</a>
+    {% endif %}
   </div>
 
   <div class="pagination">

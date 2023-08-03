@@ -43,9 +43,9 @@ urlpatterns = [
 
     path('insurance_events/', insurance_events, name='insurance_events'),
     path('insurance_event/<int:event_id>/', views.insurance_event_detail, name='insurance_event_detail'),
-    path('event/create/', create_event, name='create_event'),
     path('event/delete/<int:event_id>/', views.delete_event, name='delete_event'),
     path('edit_event/<int:event_id>/', views.edit_event, name='edit_event'),
     path('create_event/', create_event, name='create_event'),
     path('reports/', views.reports, name='reports'),
+    path('complete_event/', views.complete_event, name='complete_event'),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

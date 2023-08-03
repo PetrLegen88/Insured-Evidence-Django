@@ -1,7 +1,7 @@
 from decimal import Decimal, InvalidOperation
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm, PolicyholderForm
+from .forms import InsuredForm, InsuranceForm, InsuranceEventForm, NewInsuranceForm, PolicyholderForm, CompleteEventForm
 from .models import Insured, Insurance, InsuranceEvent, RoleEnum
 from django.contrib import messages
 from django.urls import reverse
@@ -278,7 +278,18 @@ def edit_event(request, event_id):
     return render(request, 'edit_event.html', context)
 
 
+def complete_event(request):
+    if request.method == 'POST':
+        form = CompleteEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('reports')  # Přesměrování na seznam všech událostí po úspěšném uložení
+
+    else:
+        form = CompleteEventForm()
+
+    return render(request, 'complete_event.html', {'form': form})
+
+
 def reports(request):
     return render(request, 'reports.html')
-
-

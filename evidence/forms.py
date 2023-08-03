@@ -42,3 +42,9 @@ class PolicyholderForm(forms.Form):
         label='Policyholder',
         widget=forms.Select
     )
+
+
+class CompleteEventForm(forms.ModelForm):
+    class Meta:
+        model = InsuranceEvent
+        fields = '__all__'
