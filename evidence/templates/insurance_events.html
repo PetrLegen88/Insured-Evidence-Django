@@ -40,7 +40,9 @@
       {% for event in page_obj %}
         <tr>
           <td>
-          <input type="checkbox" name="eventCheckbox" value="{{ event.id }}">
+           <input type="checkbox" name="eventCheckbox" value="{{ event.id }}"
+                  data-event-id="{{ event.id }}" data-insurance="{{ event.insurance }}" data-subject="{{ event.subject }}"
+                  data-date-submitted="{{ event.date_submitted|date:'Y-m-d' }}">
           </td>
           <td>
             <a href="{% url 'insurance_event_detail' event_id=event.id %}" class="event-id">
@@ -79,7 +81,7 @@
    <div class="main-buttons">
     <a href="{% url 'create_event' %}" class="button button-add">Create Event</a>
     {% if has_permission or user.is_superuser %}
-      <a href="{% url 'complete_event' %}" class="button button-add">Complete Event</a>
+      <a href="#" class="button button-add" id="completeEventButton">Complete Event</a>
     {% endif %}
   </div>
 
@@ -94,4 +96,32 @@
         <a href="?page={{ page_obj.next_page_number }}">Next</a>
     {% endif %}
   </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const completeEventButton = document.getElementById('completeEventButton');
+
+    completeEventButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      // Získání dat z označeného eventu
+      const selectedEventCheckbox = document.querySelector('input[name="eventCheckbox"]:checked');
+      if (!selectedEventCheckbox) {
+        alert('Please select an event to complete.');
+        return;
+      }
+
+      const eventId = selectedEventCheckbox.getAttribute('data-event-id');
+      const insuranceData = selectedEventCheckbox.getAttribute('data-insurance');
+      const subjectData = selectedEventCheckbox.getAttribute('data-subject');
+      const dateSubmittedData = selectedEventCheckbox.getAttribute('data-date-submitted');
+
+      // Přesměrování na stránku Complete Event s přidáním parametrů do URL
+      const url = '{% url "complete_event" %}?event_id=' + encodeURIComponent(eventId) +
+                  '&insurance=' + encodeURIComponent(insuranceData) +
+                  '&subject=' + encodeURIComponent(subjectData) +
+                  '&date_submitted=' + encodeURIComponent(dateSubmittedData);
+      window.location.href = url;
+    });
+  });
+</script>
 {% endblock %}

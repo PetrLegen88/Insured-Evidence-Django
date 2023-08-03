@@ -279,16 +279,20 @@ def edit_event(request, event_id):
 
 
 def complete_event(request):
+    event_id = request.GET.get('event_id')
+    event = get_object_or_404(InsuranceEvent, id=event_id)
+
     if request.method == 'POST':
-        form = CompleteEventForm(request.POST)
+        form = CompleteEventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            return redirect('reports')  # Přesměrování na seznam všech událostí po úspěšném uložení
-
+            # Přesměrování na seznam událostí nebo jinou stránku podle potřeby
+            return redirect('insurance_events')
     else:
-        form = CompleteEventForm()
+        form = CompleteEventForm(instance=event)
 
     return render(request, 'complete_event.html', {'form': form})
+
 
 
 def reports(request):

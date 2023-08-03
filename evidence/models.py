@@ -33,6 +33,7 @@ class Insured(models.Model):
 
 
 class Insurance(models.Model):
+
     INSURANCE_TYPE = (
         ('home', 'Home insurance'),
         ('car', 'Car insurance'),

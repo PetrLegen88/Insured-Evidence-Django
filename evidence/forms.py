@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from .models import Insured, Insurance, InsuranceEvent, RoleEnum
 
@@ -47,4 +49,5 @@ class PolicyholderForm(forms.Form):
 class CompleteEventForm(forms.ModelForm):
     class Meta:
         model = InsuranceEvent
-        fields = '__all__'
+        fields = ['total_payout', 'date_completed']
+
