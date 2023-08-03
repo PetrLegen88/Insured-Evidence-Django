@@ -276,3 +276,9 @@ def edit_event(request, event_id):
         'event': event
     }
     return render(request, 'edit_event.html', context)
+
+
+def reports(request):
+    return render(request, 'reports.html')
+
+

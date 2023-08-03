@@ -57,18 +57,29 @@ class Insurance(models.Model):
 
 class InsuranceEvent(models.Model):
     STATUS_CHOICES = (
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rejected', 'Rejected'),
-        ('in_progress', 'In Progress'),
-        ('completed', 'Completed'),
+        ('PENDING', 'Pending'),
+        ('APPROVED', 'Approved'),
+        ('REJECTED', 'Rejected'),
+        ('IN_PROGRESS', 'In Progress'),
+        ('COMPLETED', 'Completed'),
     )
     insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=32, null=True)
     description = models.TextField()
-    date = models.DateField()
     status = models.CharField(max_length=32, choices=STATUS_CHOICES)
     note = models.TextField(blank=True, null=True)
+    date_submitted = models.DateField()
+    date_completed = models.DateField(null=True, blank=True)
+    total_payout = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return f'{self.insurance} - {self.subject}'
+
+
+class Report(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    events = models.ManyToManyField(InsuranceEvent, related_name='reports')
+
+    def __str__(self):
+        return self.name

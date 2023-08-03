@@ -39,11 +39,13 @@ urlpatterns = [
     path('insureds/edit/<int:insured_id>/', views.edit_insured, name='edit_insured'),
     path('delete_insurance/<int:insurance_id>/', views.delete_insurance, name='delete_insurance'),
     path('edit_insurance/<int:insurance_id>/', views.edit_insurance, name='edit_insurance'),
-    path('insurance/<int:insurance_id>/add_policyholder/', views.add_policyholder, name='add_policyholder'),
+    path('insurance/<int:insurance_id>/add_policyholder/', views.add_policyholder,name='add_policyholder'),
 
     path('insurance_events/', insurance_events, name='insurance_events'),
     path('insurance_event/<int:event_id>/', views.insurance_event_detail, name='insurance_event_detail'),
     path('event/create/', create_event, name='create_event'),
     path('event/delete/<int:event_id>/', views.delete_event, name='delete_event'),
     path('edit_event/<int:event_id>/', views.edit_event, name='edit_event'),
+    path('create_event/', create_event, name='create_event'),
+    path('reports/', views.reports, name='reports'),
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

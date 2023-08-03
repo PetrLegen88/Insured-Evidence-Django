@@ -17,7 +17,7 @@ class InsuranceForm(forms.ModelForm):
 class InsuranceEventForm(forms.ModelForm):
     class Meta:
         model = InsuranceEvent
-        fields = ['insurance', 'subject', 'description', 'date', 'status', 'note']
+        fields = ['insurance', 'subject', 'description', 'date_submitted', 'status', 'note']
 
 
 class NewInsuranceForm(forms.ModelForm):
